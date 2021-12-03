@@ -8,8 +8,9 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
 export const Banner = () => {
+    const data = BannerData;
     let carousel = React.createRef();
-    const props = {
+    const dataSlick = {
         autoplay: true,
         autoplaySpeed: 5000, //5000
         pauseOnHover: true,
@@ -28,16 +29,19 @@ export const Banner = () => {
                 <RightOutlined />
             </ButtonNext>
 
-            <Carousel ref={(node) => (carousel = node)} {...props}>
+            <Carousel ref={(node) => (carousel = node)} {...dataSlick}>
                 {
-                    BannerData.map(todo =>
+                    data.map(todo =>
                         <div>
                             <ImageStyle src={todo.linkImage} />
                             <ContentProduct>
                                 <p>{todo.content}</p>
                                 <span>
-                                    {todo.price !== 'Free' && <span>Starting at ₫</span>}
-                                    {todo.price}
+                                    {todo.price > 0 && <span>Starting at</span>}
+                                    {todo.price > 0  
+                                        ? " ₫ " + todo.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                                        : "Free"
+                                    }
                                 </span>
                                 <button>BUY NOW</button>
                             </ContentProduct>

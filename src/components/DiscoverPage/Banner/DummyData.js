@@ -8,37 +8,37 @@ export const BannerData = [
     {
         id: 1,
         linkImage: FortNite,
-        price: 'Free',
+        price: 0,
         content: "Michael Jordan’s Cool Grey XIs and The Jumpman Zone are in Fortnite!",
     },
     {
         id: 2,
         linkImage: FriendsOf,
-        price: '217,000',
+        price: 217000,
         content: "Experience the joys of life on the farm in this reimagining of a timeless STORY OF SEASONS classic!",
     },
     {
         id: 3,
         linkImage: FarmingSimulator,
-        price: '950,000',
+        price: 950000,
         content: "Create your own farm and master seasonal challenges with 400+ machines, production chains & more.",
     },
     {
         id: 4,
         linkImage: GenshinImpact,
-        price: 'Free',
+        price: 0,
         content: "The latest update brings harsh challenges in snow, a mysterious case to solve, and new companions Arataki Itto and Gorou!",
     },
     {
         id: 5,
         linkImage: BattleField,
-        price: '990,000',
+        price: 990000,
         content: "The iconic Battlefield franchise is back with new game modes and dynamic weather in all-out warfare.",
     },
     {
         id: 6,
         linkImage: FarCry6,
-        price: '990,000',
+        price: 990000,
         content: "Dive into the gritty world of a modern-day guerrilla revolution to liberate a nation from its oppressive dictators.",
     }
 ]

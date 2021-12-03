@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 export const ImageStyle = styled.img`
     width: 100%;
-    border-radius: 1rem;
 `;
 
 export const ComponentBanner = styled.div`
     position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
 `;
 
 export const ButtonPrev = styled.div`
@@ -56,7 +57,6 @@ export const ContentProduct = styled.div`
     top: 0;
     padding: 4rem;
     border: none;
-    border-radius: 15px;
     font-weight: 500;
     text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
     p{
