@@ -18,7 +18,7 @@ export const Title = styled.div`
     margin: 0 0.3rem;
     p{
         color: white;
-        font-size: 20px;
+        font-size: 22px;
     }
     div{
         display: flex;
