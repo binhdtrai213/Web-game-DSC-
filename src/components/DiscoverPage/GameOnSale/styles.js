@@ -10,6 +10,7 @@ export const ImageStyle = styled.img`
 export const ComponentPage = styled.div`
     position: relative;
     margin-top: 3rem;
+    font-weight: 500;
 `;
 
 export const ComponentProduct = styled.div`

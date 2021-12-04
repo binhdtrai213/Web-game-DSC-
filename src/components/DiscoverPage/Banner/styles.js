@@ -62,12 +62,12 @@ export const ContentProduct = styled.div`
     p{
         color: white;
         padding-bottom: 1rem;
-        font-size: 19px;
+        font-size: 20px;
     }
     span{
         color: white;
         margin-bottom: 0.5rem;
-        font-size: 17px;
+        font-size: 18px;
     }
     button{
         width: 50%;
@@ -76,7 +76,7 @@ export const ContentProduct = styled.div`
         border-radius: 5px;
         border: none;
         color: black;
-        font-size: 15px;
+        font-size: 17px;
         font-weight: 500;
         cursor: pointer;
         transition: transform .2s;
