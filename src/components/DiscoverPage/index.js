@@ -3,6 +3,7 @@ import { Banner } from './Banner/index';
 import { GameOnSale } from './GameOnSale/index';
 import { MeaninglessPath1 } from './MeaninglessPart1/index';
 import { MeaninglessPath2 } from './MeaninglessPart2/index';
+import { FreeGame } from './FreeGame/index';
 
 export const DiscoverPage = () => {
     
@@ -11,6 +12,7 @@ export const DiscoverPage = () => {
             <Banner />
             <GameOnSale />
             <MeaninglessPath1 />
+            <FreeGame />
             <MeaninglessPath2 />
         </div>
     );

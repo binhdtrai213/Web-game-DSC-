@@ -2,11 +2,8 @@ import styled from 'styled-components';
 
 export const ImageStyle = styled.img`
     width: 100%;
+    margin-bottom: 1rem;
     border-radius: 10px;
-    transition: transform .2s;
-    :hover{
-        transform: scale(1.02);
-    }
 `;
 
 export const ComponentPage = styled.div`
@@ -18,7 +15,11 @@ export const ComponentPage = styled.div`
 
 export const ContentProduct = styled.div`
     color: white;
+    transition: transform .2s;
     cursor: pointer;
+    :hover{
+        transform: scale(1.02);
+    }
     p{
         font-size: 22px;
         margin-bottom: 0.5rem;

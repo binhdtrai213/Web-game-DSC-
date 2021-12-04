@@ -12,13 +12,21 @@ export const ComponentPage = styled.div`
     margin-top: 3rem;
 `;
 
+export const ComponentProduct = styled.div`
+    transition: transform .2s;
+    :hover{
+        transform: scale(0.98);
+    }
+`
+
 export const Title = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 0 0.3rem;
     p{
         color: white;
-        font-size: 22px;
+        font-size: 25px;
+        margin-bottom: 1rem;
     }
     div{
         display: flex;

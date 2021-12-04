@@ -3,7 +3,7 @@ import { Carousel } from 'antd';
 
 import { Data } from './DummyData';
 
-import { ComponentPage, ImageStyle, ButtonStyle, ContentProduct, Title } from './styles';
+import { ComponentPage, ImageStyle, ButtonStyle, ContentProduct, Title, ComponentProduct } from './styles';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
@@ -33,7 +33,7 @@ export const GameOnSale = () => {
             <Carousel ref={(node) => (carousel = node)} {...dataSlick}>
                 {
                     data.map(todo =>
-                        <div onClick={() => alert(todo.id)}>
+                        <ComponentProduct onClick={() => alert(todo.id)}>
                             <ImageStyle src={todo.linkImage} />
                             <ContentProduct>
                                 <p>{todo.name}</p>
@@ -45,7 +45,7 @@ export const GameOnSale = () => {
                                     }
                                 </p>
                             </ContentProduct>
-                        </div>
+                        </ComponentProduct>
                     )
                 
                 }
