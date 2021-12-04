@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Data } from './DummyData';
 
-import { ComponentPage, ImageStyle, ContentProduct } from './style';
+import { ComponentPage, ImageStyle, ContentProduct } from './styles';
 
 export const MeaninglessPath1 = () => {
     const data = Data;

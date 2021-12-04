@@ -16,7 +16,7 @@ export const ComponentPage = styled.div`
 export const ComponentProduct = styled.div`
     transition: transform .2s;
     :hover{
-        transform: scale(0.98);
+        transform: scale(0.97);
     }
 `
 

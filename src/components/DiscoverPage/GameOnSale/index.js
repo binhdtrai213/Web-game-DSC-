@@ -47,7 +47,6 @@ export const GameOnSale = () => {
                             </ContentProduct>
                         </ComponentProduct>
                     )
-                
                 }
             </Carousel>
         </ComponentPage>

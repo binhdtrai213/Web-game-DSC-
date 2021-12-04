@@ -2,7 +2,7 @@ import React from "react";
 
 import { Data } from "./DummyData";
 
-import { ComponentPage, ImageStyle, ProductStyle } from "./style";
+import { ComponentPage, ImageStyle, ProductStyle } from "./styles";
 
 export const SyntheticPart = () => {
     const data = Data;
