@@ -6,8 +6,19 @@ export const ImageStyle = styled.img`
 
 export const ComponentBanner = styled.div`
     position: relative;
-    border-radius: 1rem;
+    border-radius: 8px;
     overflow: hidden;
+    .ant-carousel .slick-dots-bottom {
+        bottom: -5px;
+    }
+    @media only screen and (max-width: 480px) {
+        .ant-carousel .slick-dots-bottom {
+            bottom: -11px;
+        }
+        .ant-carousel .slick-dots li button {
+            height: 2px;
+        }
+    }
 `;
 
 export const ButtonPrev = styled.div`
@@ -27,6 +38,12 @@ export const ButtonPrev = styled.div`
         opacity: 1;
         backdrop-filter: blur(10px);
     }
+    @media only screen and (max-width: 1024px) {
+        font-size: 25px;
+    }
+    @media only screen and (max-width: 600px) {
+        font-size: 15px;
+    }
 `;
 export const ButtonNext = styled.div`
     z-index: 99;
@@ -44,6 +61,12 @@ export const ButtonNext = styled.div`
     &:hover {
         opacity: 1;
         backdrop-filter: blur(10px);
+    }
+    @media only screen and (max-width: 1024px) {
+        font-size: 25px;
+    }
+    @media only screen and (max-width: 600px) {
+        font-size: 15px;
     }
 `;
 export const ContentProduct = styled.div`
@@ -84,4 +107,42 @@ export const ContentProduct = styled.div`
             transform: scale(1.05);
         }
     }
-`
+    @media only screen and (max-width: 1024px) {
+        width: 50vw;
+        padding: 2.2rem;
+        p{
+            padding: 0;
+            margin: 0;
+        }
+        button{
+            padding: 0.2rem 0;
+        }
+    }
+    @media only screen and (max-width: 600px) {
+        p, span{
+            font-size: 16px;
+        }
+        button{
+            font-size: 14px; 
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        width: 60vw;
+        padding: 0.6rem;
+        p, span{
+            font-size: 12px;
+        }
+        button{
+            font-size: 10px; 
+        }
+    }
+    @media only screen and (max-width: 300px) {
+        p, span{
+            font-size: 10px;
+        }
+        button{
+            font-size: 8px; 
+            padding: 0.1rem 0;
+        }
+    }
+`;

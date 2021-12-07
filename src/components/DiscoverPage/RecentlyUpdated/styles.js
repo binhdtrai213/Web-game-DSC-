@@ -8,6 +8,15 @@ export const ComponentPage = styled.div`
     margin-top: 3rem;
     font-weight: 500;
     color: white;
+    .title{
+        font-size: 25px;
+    }
+    @media only screen and (max-width: 600px) {
+        .title{
+            font-size: 20px;
+        }
+        margin-top: 1rem;
+    }
 `;
 export const ComponentProduct = styled.div`
     display: grid;
@@ -18,6 +27,9 @@ export const ComponentProduct = styled.div`
         :hover{
             transform: scale(0.97);
         }
+    }
+    @media only screen and (max-width: 768px) {
+        grid-template-columns: 48% 48%;
     }
 `;
 export const ContentProduct = styled.div`
@@ -30,5 +42,10 @@ export const ContentProduct = styled.div`
     }
     .content-product{
         opacity: 0.5;
+    }
+    @media only screen and (max-width: 600px) {
+        p{
+            margin-bottom: 0.3rem;
+        }
     }
 `;

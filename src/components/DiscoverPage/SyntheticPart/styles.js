@@ -6,17 +6,35 @@ export const ImageStyle = styled.img`
 `;
 
 export const ComponentPage = styled.div`
-    display: grid;
-    grid-template-columns: 32% 32% 32%;
-    justify-content: space-between;
     margin-top: 3rem;
-    color: white;
     font-weight: 500;
+    .media-bigger-than-800px{
+        display: grid;
+        grid-template-columns: 32% 32% 32%;
+        justify-content: space-between;
+    }
     .column1, .column2{
         border-right:  1px solid #ffffff1a;
     }
     .title{
         font-size: 25px;
+    }
+    p, span{
+        color: white;
+    }
+    .ant-carousel .slick-dots-bottom {
+        bottom: -15px;
+    }
+    @media (max-width: 800px) {
+        .title{
+            font-size: 20px;
+        }
+        .column3{
+            border-right:  1px solid #ffffff1a;
+        }
+    }
+    @media only screen and (max-width: 600px) {
+        margin-top: 1rem;
     }
 `;
 
@@ -36,5 +54,15 @@ export const ProductStyle = styled.div`
     }
     .content{
         margin: auto 1rem;
+        p, span{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    @media only screen and (max-width: 1024px) {
+        grid-template-columns: 30% 70%;
+        padding: 0.5rem 1rem;
+        margin-right: 1rem;
     }
 `

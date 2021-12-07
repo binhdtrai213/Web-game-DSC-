@@ -11,6 +11,12 @@ export const ComponentPage = styled.div`
     position: relative;
     margin-top: 3rem;
     font-weight: 500;
+    .ant-carousel .slick-dots {
+        bottom: -10px;
+    }
+    @media only screen and (max-width: 600px) {
+        margin-top: 1rem;
+    }
 `;
 
 export const ComponentProduct = styled.div`
@@ -23,15 +29,27 @@ export const ComponentProduct = styled.div`
 export const Title = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 0 0.3rem;
+    margin: 0 0.3rem 1rem 0.3rem;
     p{
         color: white;
         font-size: 25px;
-        margin-bottom: 1rem;
+        margin-bottom: 0;
     }
-    div{
+    .button-prev-next{
         display: flex;
+        align-items: center;
         justify-content: space-between;
+    }
+    @media only screen and (max-width: 600px) {
+        margin: 0 0.3rem 0.5rem 0.3rem;
+        p{
+            font-size: 22px;
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        p{
+            font-size: 20px;
+        }
     }
 `
 
@@ -50,6 +68,10 @@ export const ButtonStyle = styled.div`
     &:hover {
         background: #474747;
     }
+    @media only screen and (max-width: 480px) {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
 `;
 export const ContentProduct = styled.div`
     padding: 1rem 0.5rem;
@@ -63,5 +85,9 @@ export const ContentProduct = styled.div`
         white-space: nowrap;
         margin-bottom: 0.2rem;
     }
-
+    @media only screen and (max-width: 480px) {
+        p{
+            font-size: 11px;
+        }
+    }
 `

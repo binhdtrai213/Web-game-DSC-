@@ -8,27 +8,31 @@ import { ImageStyle, ComponentPage, ContentProduct, ComponentProduct } from "./s
 export const MostPopular = () => {
     const data = Data; 
 
+    const ContentComponent = () => {
+        const count = window.matchMedia(window.matchMedia("(max-width: 768px)")) ? 4 : 5;
+        return(
+            data.map((todo, id) => id < count &&
+                <div>
+                    <ImageStyle src={todo.linkImage} />
+                    <ContentProduct>
+                        <p className="name-product">{todo.name}</p>
+                        <p className="content-product">{todo.content}</p>
+                        <p>
+                            {todo.price !== 0  
+                                ? "₫ " + todo.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                                : "Free"
+                            }
+                        </p>
+                    </ContentProduct>
+                </div>
+            )
+        );
+    }
     return(
         <ComponentPage>
-            <p style={{ fontSize: '25px' }} >Most Popular</p>
+            <p className="title" >Most Popular</p>
             <ComponentProduct>
-                {
-                    data.map(todo =>
-                        <div>
-                            <ImageStyle src={todo.linkImage} />
-                            <ContentProduct>
-                                <p className="name-product">{todo.name}</p>
-                                <p className="content-product">{todo.content}</p>
-                                <p>
-                                    {todo.price !== 0  
-                                        ? "₫ " + todo.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                                        : "Free"
-                                    }
-                                </p>
-                            </ContentProduct>
-                        </div>
-                    )
-                }
+                {ContentComponent()}
             </ComponentProduct>
         </ComponentPage>
     );

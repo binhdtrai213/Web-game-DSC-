@@ -12,7 +12,7 @@ export const FreeGame = () => {
     return(
         <ComponentPage>
             <Title>
-                <GiftOutlined style={{ fontSize: "50px" }}/>
+                <GiftOutlined className="icon-gift"/>
                 <span className="title">Free Games</span>
             </Title>
             <ComponentProduct>

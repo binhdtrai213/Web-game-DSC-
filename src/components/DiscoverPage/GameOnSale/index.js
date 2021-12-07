@@ -11,16 +11,16 @@ export const GameOnSale = () => {
     const data = Data;
     let carousel = React.createRef();
     const dataSlick = {
-        dots: false,
+        dots: window.matchMedia("(max-width: 600px)").matches ? true : false,
         speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 5,
+        slidesToShow: window.matchMedia("(max-width: 600px)").matches ? 3 : 5,
+        slidesToScroll: window.matchMedia("(max-width: 600px)").matches ? 3 : 5,
     };
     return(
         <ComponentPage>
             <Title>
                 <p>Games On Sale</p>
-                <div>
+                <div className="button-prev-next">
                     <ButtonStyle onClick={() => carousel.prev()}>
                         <LeftOutlined/>
                     </ButtonStyle>

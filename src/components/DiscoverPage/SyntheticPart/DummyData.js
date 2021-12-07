@@ -77,13 +77,13 @@ export const Data = [
             },
             {
                 id: 4,
-                name: "theHunter: Call of the Wild™",
+                name: "TheHunter: Call of the Wild™",
                 linkImage: Game24,
                 price: 188000,
             },
             {
                 id: 5,
-                name: "TheHunter: Call of the Wild™",
+                name: "Solar Ash",
                 linkImage: Game25,
                 price: 315000,
             },

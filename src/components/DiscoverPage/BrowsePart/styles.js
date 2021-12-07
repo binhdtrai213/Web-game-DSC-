@@ -5,7 +5,7 @@ export const ImageStyle = styled.img`
     cursor: pointer;
     transition: transform .2s;
         :hover{
-            transform: scale(1.15);
+            transform: scale(1.1);
         }
 `
 
@@ -13,9 +13,15 @@ export const ComponentPage = styled.div`
     display: grid;
     grid-template-columns: 60% 35%;
     justify-content: space-between;
-    margin-top: 3rem;
+    margin: 3rem 0;
     color: white;
     font-weight: 500;
+    @media only screen and (max-width: 768px) {
+        grid-template-columns: 100%;
+    }
+    @media only screen and (max-width: 600px) {
+        margin: 1rem 0;
+    }
 `
 
 export const ContentStyle = styled.div`
@@ -42,6 +48,21 @@ export const ContentStyle = styled.div`
         transition: transform .2s;
         :hover{
             transform: scale(1.05);
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        justify-content: center;
+        text-align: center;
+        .title{
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .content{
+            font-size: 18px;
+        }
+        button{
+            width: 40%;
+            padding: 0.5rem 0;
         }
     }
 `
