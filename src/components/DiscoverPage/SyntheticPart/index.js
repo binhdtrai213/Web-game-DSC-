@@ -39,7 +39,7 @@ export const SyntheticPart = () => {
 
     return (
         <ComponentPage>
-            {window.matchMedia("(max-width: 800px)") 
+            {window.matchMedia("(max-width: 800px)").matches 
                 ? <Carousel {...props}>{ContentComponent}</Carousel>
                 : <div className="media-bigger-than-800px">{ContentComponent}</div>
             }

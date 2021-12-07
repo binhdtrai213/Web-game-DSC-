@@ -9,7 +9,7 @@ export const MostPopular = () => {
     const data = Data; 
 
     const ContentComponent = () => {
-        const count = window.matchMedia(window.matchMedia("(max-width: 768px)")) ? 4 : 5;
+        const count = window.matchMedia(window.matchMedia("(max-width: 768px)")).matches ? 4 : 5;
         return(
             data.map((todo, id) => id < count &&
                 <div>
