@@ -5,7 +5,7 @@ import PrisonArchitect from "../../../assets/FreeGame/PrisonArchitect.png";
 
 export const Data = [
     {
-        id: 1,
+        id: 100007,
         name: "Dead by Daylight",
         linkImage: Dead,
         price: 0,
@@ -13,7 +13,7 @@ export const Data = [
         status: true,
     },
     {
-        id: 2,
+        id: 100008,
         name: "while True: learn()",
         linkImage: WhileLearn,
         price: 0,
@@ -21,7 +21,7 @@ export const Data = [
         status: true,
     },
     {
-        id: 3,
+        id: 100009,
         name: "Godfall Challenger Edition",
         linkImage: GodFall,
         price: 0,
@@ -29,7 +29,7 @@ export const Data = [
         status: false,
     },
     {
-        id: 4,
+        id: 100010,
         name: "Prison Architect",
         linkImage: PrisonArchitect,
         price: 0,

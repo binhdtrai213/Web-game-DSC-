@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Data } from "./DummyData";
+import { RemindOfAdd } from '../RemindAddCart/index';
 
 import { ImageStyle, ComponentPage, ProductStyle, Title, ComponentProduct } from "./styles";
 
@@ -8,6 +9,26 @@ import { GiftOutlined } from "@ant-design/icons";
 
 export const FreeGame = () => {
     const data = Data; 
+    const [isRemind, setIsRemind] = useState({
+        status: false,
+        product: {},
+    });
+
+    const changeDataCart = (kind) => {
+        if(kind === 1) {
+            let ok = true;
+            let dataCart = JSON.parse(localStorage.getItem('user123'));
+            for(let i = 0; i < dataCart.length; i++) {
+                if(dataCart[i].name === isRemind.product.name)
+                    ok = false;
+            }
+            if(ok) localStorage.setItem('user123', JSON.stringify([...dataCart, isRemind.product]));
+        }
+        setIsRemind({
+            status: false,
+            product: {},
+        });
+    }
 
     return(
         <ComponentPage>
@@ -18,7 +39,10 @@ export const FreeGame = () => {
             <ComponentProduct>
                 {
                     data.map(todo => 
-                        <ProductStyle>
+                        <ProductStyle onClick={() => setIsRemind({
+                            status: true,
+                            product: todo,
+                        })}>
                             <div>
                                 <ImageStyle src={todo.linkImage} />
                                 {
@@ -33,6 +57,7 @@ export const FreeGame = () => {
                     )
                 }
             </ComponentProduct>
+            {isRemind.status && <RemindOfAdd changeDataCartFunc={changeDataCart} />}
         </ComponentPage>
     );
 }

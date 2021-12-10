@@ -8,10 +8,13 @@ export const ImageStyle = styled.img`
 export const ComponentPage = styled.div`
     margin-top: 3rem;
     font-weight: 500;
-    .media-bigger-than-800px{
-        display: grid;
-        grid-template-columns: 32% 32% 32%;
-        justify-content: space-between;
+    .ant-carousel .slick-list .slick-slide {
+        div{
+            div{
+                width: 95% !important;
+                margin: 0.5rem !important;
+            }
+        }
     }
     .column1, .column2{
         border-right:  1px solid #ffffff1a;
@@ -19,7 +22,7 @@ export const ComponentPage = styled.div`
     .title{
         font-size: 25px;
     }
-    p, span{
+    .name-product, .price-product, .title{
         color: white;
     }
     .ant-carousel .slick-dots-bottom {

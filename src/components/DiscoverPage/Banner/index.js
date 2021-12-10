@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Carousel } from 'antd';
 
 import { BannerData } from './DummyData';
-
+import { RemindOfAdd } from '../RemindAddCart/index';
+import { RemindNotExist } from '../RemindGameNotExist/index';
+ 
 import { ComponentBanner, ImageStyle, ButtonNext, ButtonPrev, ContentProduct } from './styles';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
 export const Banner = () => {
     const data = BannerData;
+    const [isExist, setIsExist] = useState(false);
+    const [isRemind, setIsRemind] = useState({
+        status: false,
+        product: {},
+    });
     let carousel = React.createRef();
     const dataSlick = {
         autoplay: true,
@@ -18,6 +25,25 @@ export const Banner = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
     };
+
+    const changeDataCart = (kind) => {
+        if(kind === 1) {
+            let ok = true;
+            let dataCart = JSON.parse(localStorage.getItem('user123'));
+            for(let i = 0; i < dataCart.length; i++) {
+                if(dataCart[i].name === isRemind.product.name)
+                    ok = false;
+            }
+            if(ok) localStorage.setItem('user123', JSON.stringify([...dataCart, isRemind.product]));
+        }
+        setIsRemind({
+            status: false,
+            product: {},
+        });
+    }
+    const changeExistStatus = () => {
+        setIsExist(false);
+    }
 
     return(
         <ComponentBanner>
@@ -43,13 +69,18 @@ export const Banner = () => {
                                         : "Free"
                                     }
                                 </span>
-                                <button>BUY NOW</button>
+                                <button onClick={() => setIsRemind({
+                                    status: true,
+                                    product: todo,
+                                })}>BUY NOW</button>
                             </ContentProduct>
                         </div>
                     )
                 
                 }
             </Carousel>
+            {isRemind.status && <RemindOfAdd changeDataCartFunc={changeDataCart} />}
+            {isExist && <RemindNotExist changeExistStatusFunc={changeExistStatus} />}
         </ComponentBanner>
     );
 }

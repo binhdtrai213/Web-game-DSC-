@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Carousel } from 'antd';
 
 import { Data } from './DummyData';
+import { RemindOfAdd } from '../RemindAddCart/index';
 
 import { ComponentPage, ImageStyle, ButtonStyle, ContentProduct, Title, ComponentProduct } from './styles';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
@@ -9,13 +10,45 @@ import 'antd/dist/antd.css';
 
 export const GameOnSale = () => {
     const data = Data;
+    const [isRemind, setIsRemind] = useState({
+        status: false,
+        product: {},
+    });
     let carousel = React.createRef();
     const dataSlick = {
-        dots: window.matchMedia("(max-width: 600px)").matches ? true : false,
+        dots: false,
         speed: 500,
-        slidesToShow: window.matchMedia("(max-width: 600px)").matches ? 3 : 5,
-        slidesToScroll: window.matchMedia("(max-width: 600px)").matches ? 3 : 5,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        responsive: [
+            {
+                breakpoint: 600,
+                settings: 
+                {
+                    dot: true,
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                }
+            },
+        ],
     };
+
+    const changeDataCart = (kind) => {
+        if(kind === 1) {
+            let ok = true;
+            let dataCart = JSON.parse(localStorage.getItem('user123'));
+            for(let i = 0; i < dataCart.length; i++) {
+                if(dataCart[i].name === isRemind.product.name)
+                    ok = false;
+            }
+            if(ok) localStorage.setItem('user123', JSON.stringify([...dataCart, isRemind.product]));
+        }
+        setIsRemind({
+            status: false,
+            product: {},
+        });
+    }
+    
     return(
         <ComponentPage>
             <Title>
@@ -33,7 +66,10 @@ export const GameOnSale = () => {
             <Carousel ref={(node) => (carousel = node)} {...dataSlick}>
                 {
                     data.map(todo =>
-                        <ComponentProduct onClick={() => alert(todo.id)}>
+                        <ComponentProduct onClick={() => setIsRemind({
+                                status: true,
+                                product: todo,
+                            })}>
                             <ImageStyle src={todo.linkImage} />
                             <ContentProduct>
                                 <p>{todo.name}</p>
@@ -49,6 +85,7 @@ export const GameOnSale = () => {
                     )
                 }
             </Carousel>
+            {isRemind.status && <RemindOfAdd changeDataCartFunc={changeDataCart} />}
         </ComponentPage>
     );
 }

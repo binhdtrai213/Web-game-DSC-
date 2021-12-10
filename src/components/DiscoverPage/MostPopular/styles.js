@@ -7,9 +7,9 @@ export const ImageStyle = styled.img`
 export const ComponentPage = styled.div`
     margin-top: 3rem;
     font-weight: 500;
-    color: white;
     .title{
         font-size: 25px;
+        color: white;
     }
     @media only screen and (max-width: 600px) {
         .title{
@@ -23,6 +23,8 @@ export const ComponentProduct = styled.div`
     grid-template-columns: 19% 19% 19% 19% 19%;
     justify-content: space-between;
     div{
+        color: white;
+        cursor: pointer;
         transition: transform .2s;
         :hover{
             transform: scale(0.97);
@@ -34,7 +36,6 @@ export const ComponentProduct = styled.div`
 `;
 export const ContentProduct = styled.div`
     margin-top: 1rem;
-    cursor: pointer;
     p{
         white-space: nowrap;
         overflow: hidden;
