@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Carousel } from 'antd';
-import { Data } from './DummyData';
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+import { getDatabase, ref, child, get } from 'firebase/database';
+
 import { RemindOfAdd } from '../RemindAddCart/index';
 
 import { ComponentPage, ImageStyle, ContentProduct } from './styles';
 
 export const MeaninglessPath2 = () => {
-    const data = Data;
+    const firebaseConfig = {
+        apiKey: "AIzaSyCpMV7oa-Ub9JggYajdeCwP5iZ1WvkbWpc",
+        authDomain: "web-game-dsc.firebaseapp.com",
+        databaseURL: "https://web-game-dsc-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "web-game-dsc",
+        storageBucket: "web-game-dsc.appspot.com",
+        messagingSenderId: "346312806625",
+        appId: "1:346312806625:web:ce9990747594b69101e7a0",
+        measurementId: "G-MYD8JRXN9F"
+    };
+      
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    const [data, setData] = useState([]);
     const [isRemind, setIsRemind] = useState({
         status: false,
         product: {},
@@ -28,6 +46,19 @@ export const MeaninglessPath2 = () => {
         ]
     };
 
+    useEffect(() => {
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, `discover/meaninglessPath2`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+                setData(snapshot.val());
+            } else {
+                setData([]);
+            }
+            }).catch((error) => {
+                console.error(error);
+            });
+    },[]);
     const changeDataCart = (kind) => {
         if(kind === 1) {
             let ok = true;
