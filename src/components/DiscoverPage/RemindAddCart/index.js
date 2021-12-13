@@ -20,7 +20,7 @@ export const RemindOfAdd = (props) => {
                 <ButtonClose>
                     <span onClick={() => changeDataCart(0)}>×</span>
                 </ButtonClose>
-                <p>Are you sure you want to add the game from the cart?</p>
+                <p>Are you sure you want to add the game to the cart?</p>
                 <Row justify="center" style={{ margin: '1rem 0' }}>
                     <Col>
                         <YesNoButton onClick={() => changeDataCart(1)}>Yes</YesNoButton>
