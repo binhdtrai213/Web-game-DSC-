@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import { getDatabase, ref, child, get, set, remove } from 'firebase/database';
+import { getDatabase, ref, child, get, remove } from 'firebase/database';
 
 import { Row, Col, Divider, Typography, Image } from 'antd';
 
