@@ -14,7 +14,7 @@ export const DescriptionOfBill = (props) => {
     const totalBill = () => {
         let res = 0;
         data.map(
-            (todo) => (res = res + todo.price)
+            (todo) => (res = res + todo[1].price)
         );
         return res;
     };

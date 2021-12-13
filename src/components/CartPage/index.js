@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+import { getDatabase, ref, child, get, set, remove } from 'firebase/database';
 
 import { Row, Col, Divider, Typography, Image } from 'antd';
 
 import { DeleteOutlined } from '@ant-design/icons';
 
-import { ApiData } from './DummyData';
 import { DescriptionOfBill } from './DescriptionOfBill/index';
 import { RemindOfDelete } from './RemindOfDelete/index';
 import {
@@ -21,16 +23,56 @@ import 'antd/dist/antd.css';
 const { Title } = Typography;
 
 export const CartPage = () => {
-    const [data, setData] = useState(ApiData);
+    const firebaseConfig = {
+        apiKey: "AIzaSyCpMV7oa-Ub9JggYajdeCwP5iZ1WvkbWpc",
+        authDomain: "web-game-dsc.firebaseapp.com",
+        databaseURL: "https://web-game-dsc-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "web-game-dsc",
+        storageBucket: "web-game-dsc.appspot.com",
+        messagingSenderId: "346312806625",
+        appId: "1:346312806625:web:ce9990747594b69101e7a0",
+        measurementId: "G-MYD8JRXN9F"
+    };
+      
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    const [data, setData] = useState([]);
     const [isRemind, setIsRemind] = useState({
         status: false,
         id: 0,
     });
 
+    useEffect(() => {
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, `cart`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                // console.log(snapshot.val());
+                setData(Object.entries(snapshot.val()));
+            } else {
+                setData([]);
+            }
+            }).catch((error) => {
+                console.error(error);
+            });
+    },[]);
     const changeIsRemind = (ok) => {
         if (ok === 0) {
-            const newProductOfBill = data.filter((todo) => todo.id !== isRemind.id);
-            setData( newProductOfBill );
+            const db = getDatabase();
+            remove(ref(db, 'cart/' + isRemind.id));
+            const dbRef = ref(getDatabase());
+            get(child(dbRef, `cart`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    // console.log(snapshot.val());
+                    setData(Object.entries(snapshot.val()));
+                } else {
+                    setData([]);
+                }
+                }).catch((error) => {
+                    console.error(error);
+                }
+            );
         }
         setIsRemind({
             status: false,
@@ -43,7 +85,7 @@ export const CartPage = () => {
             <div height={'100%'} offset={100}>
                 <Row style={contentBill} justify="space-between">
                     <Col lg={4} md={5} sm={6} xs={7} style={{ ...centerStyle, borderRadius: '10px' }}>
-                        <Image src={todo.linkImage} style={imageStyle} />
+                        <Image src={todo.cartImage} style={imageStyle} />
                     </Col>
                     <Col lg={19} md={18} sm={17} xs={16}>
                         <Row justify="space-between">
@@ -80,7 +122,7 @@ export const CartPage = () => {
             <Row justify="space-between">
                 <Col xl={16} lg={15} md={24} sm={24} xs={24}>
                     {data.length > 0 ? (
-                        <div>{data.map((todo) => classify(todo))}</div>
+                        <div>{data.map((todo) => classify(todo[1]))}</div>
                     ) : (
                         <p style={{ textAlign: 'center', marginTop: '2rem' }}>
                             Your shopping cart is empty
