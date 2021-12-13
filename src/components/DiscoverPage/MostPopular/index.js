@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import { getDatabase, ref, child, get } from 'firebase/database';
+import { getDatabase, ref, child, get, set } from 'firebase/database';
 
 import { RemindOfAdd } from '../RemindAddCart/index';
 
@@ -45,13 +45,10 @@ export const MostPopular = () => {
     },[]);
     const changeDataCart = (kind) => {
         if(kind === 1) {
-            let ok = true;
-            let dataCart = JSON.parse(localStorage.getItem('user123'));
-            for(let i = 0; i < dataCart.length; i++) {
-                if(dataCart[i].name === isRemind.product.name)
-                    ok = false;
-            }
-            if(ok) localStorage.setItem('user123', JSON.stringify([...dataCart, isRemind.product]));
+            const db = getDatabase();
+            set(ref(db, 'cart/' + isRemind.product.id), {
+                ...isRemind.product
+            });
         }
         setIsRemind({
             status: false,

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import { getDatabase, ref, child, get } from 'firebase/database';
+import { getDatabase, ref, child, get, set } from 'firebase/database';
 
 import { RemindOfAdd } from '../RemindAddCart/index';
+import { RemindNotExist } from '../RemindGameNotExist/index';
 
 import { ImageStyle, ComponentPage, ProductStyle, Title, ComponentProduct } from "./styles";
 
@@ -26,6 +27,7 @@ export const FreeGame = () => {
     const analytics = getAnalytics(app);
 
     const [data, setData] = useState([]); 
+    const [isExist, setIsExist] = useState(false);
     const [isRemind, setIsRemind] = useState({
         status: false,
         product: {},
@@ -46,18 +48,18 @@ export const FreeGame = () => {
     },[]);
     const changeDataCart = (kind) => {
         if(kind === 1) {
-            let ok = true;
-            let dataCart = JSON.parse(localStorage.getItem('user123'));
-            for(let i = 0; i < dataCart.length; i++) {
-                if(dataCart[i].name === isRemind.product.name)
-                    ok = false;
-            }
-            if(ok) localStorage.setItem('user123', JSON.stringify([...dataCart, isRemind.product]));
+            const db = getDatabase();
+            set(ref(db, 'cart/' + isRemind.product.id), {
+                ...isRemind.product
+            });
         }
         setIsRemind({
             status: false,
             product: {},
         });
+    }
+    const changeExistStatus = () => {
+        setIsExist(false);
     }
 
     return(
@@ -69,7 +71,7 @@ export const FreeGame = () => {
             <ComponentProduct>
                 {
                     data.map(todo => 
-                        <ProductStyle onClick={() => setIsRemind({
+                        <ProductStyle onClick={() => !todo.status ? setIsExist(true) : setIsRemind({
                             status: true,
                             product: todo,
                         })}>
@@ -88,6 +90,7 @@ export const FreeGame = () => {
                 }
             </ComponentProduct>
             {isRemind.status && <RemindOfAdd changeDataCartFunc={changeDataCart} />}
+            {isExist && <RemindNotExist changeExistStatusFunc={changeExistStatus} />}
         </ComponentPage>
     );
 }
