@@ -13,6 +13,7 @@ import 'antd/dist/antd.css';
 const { Title } = Typography;
 
 export const DescriptionOfBill = (props) => {
+    const updateData = props.updateDataFunc;
     const firebaseConfig = {
         apiKey: "AIzaSyCpMV7oa-Ub9JggYajdeCwP5iZ1WvkbWpc",
         authDomain: "web-game-dsc.firebaseapp.com",
@@ -43,6 +44,7 @@ export const DescriptionOfBill = (props) => {
         const db = getDatabase();
         setTimeout(() =>{
             data.map(todo => remove(ref(db, 'cart/' + todo[0])))
+            updateData();
             setIsLoading(false);
         }, 3000);
     }

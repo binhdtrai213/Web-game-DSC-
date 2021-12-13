@@ -57,22 +57,25 @@ export const CartPage = () => {
                 console.error(error);
             });
     },[]);
+    const updateData = () => {
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, `cart`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                // console.log(snapshot.val());
+                setData(Object.entries(snapshot.val()));
+            } else {
+                setData([]);
+            }
+            }).catch((error) => {
+                console.error(error);
+            }
+        );
+    }
     const changeIsRemind = (ok) => {
         if (ok === 0) {
             const db = getDatabase();
             remove(ref(db, 'cart/' + isRemind.id));
-            const dbRef = ref(getDatabase());
-            get(child(dbRef, `cart`)).then((snapshot) => {
-                if (snapshot.exists()) {
-                    // console.log(snapshot.val());
-                    setData(Object.entries(snapshot.val()));
-                } else {
-                    setData([]);
-                }
-                }).catch((error) => {
-                    console.error(error);
-                }
-            );
+            updateData();   
         }
         setIsRemind({
             status: false,
@@ -130,7 +133,7 @@ export const CartPage = () => {
                     )}
                 </Col>
                 <Col xl={7} lg={8} md={24} sm={24} xs={24}>
-                    <DescriptionOfBill data={data} />
+                    <DescriptionOfBill data={data} updateDataFunc={updateData}/>
                 </Col>
             </Row>
             {isRemind.status && <RemindOfDelete changeIsRemindFunc={changeIsRemind} />}
