@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+import { getDatabase, ref, child, get, remove } from 'firebase/database';
 
 import { Row, Col, Typography } from 'antd';
 
+import { Loading } from '../Loading/index';
 import { Description, ButtonOrder, ButtonBuyMore } from './styles.js';
 
 import 'antd/dist/antd.css';
@@ -9,7 +13,23 @@ import 'antd/dist/antd.css';
 const { Title } = Typography;
 
 export const DescriptionOfBill = (props) => {
+    const firebaseConfig = {
+        apiKey: "AIzaSyCpMV7oa-Ub9JggYajdeCwP5iZ1WvkbWpc",
+        authDomain: "web-game-dsc.firebaseapp.com",
+        databaseURL: "https://web-game-dsc-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "web-game-dsc",
+        storageBucket: "web-game-dsc.appspot.com",
+        messagingSenderId: "346312806625",
+        appId: "1:346312806625:web:ce9990747594b69101e7a0",
+        measurementId: "G-MYD8JRXN9F"
+    };
+      
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
     const data = props.data;
+    const [isLoading, setIsLoading] = useState(false);
 
     const totalBill = () => {
         let res = 0;
@@ -18,6 +38,14 @@ export const DescriptionOfBill = (props) => {
         );
         return res;
     };
+    const doLoading = () => {
+        setIsLoading(true);
+        const db = getDatabase();
+        setTimeout(() =>{
+            data.map(todo => remove(ref(db, 'cart/' + todo[0])))
+            setIsLoading(false);
+        }, 3000);
+    }
 
     return (
         <Description>
@@ -46,7 +74,7 @@ export const DescriptionOfBill = (props) => {
                 </Col>
             </Row>
             <Row>
-                <ButtonOrder>BUY NOW</ButtonOrder>
+                <ButtonOrder onClick={() => data.length && doLoading()}>BUY NOW</ButtonOrder>
             </Row>
             <Row>
                 <ButtonBuyMore>BUY MORE</ButtonBuyMore>
@@ -56,6 +84,7 @@ export const DescriptionOfBill = (props) => {
                     * All costs include VAT (if any).
                 </i>
             </Row>
+            {isLoading && <Loading />}
         </Description>
     );
 };

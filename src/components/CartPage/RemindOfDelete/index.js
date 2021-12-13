@@ -8,13 +8,13 @@ import 'antd/dist/antd.css';
 
 export const RemindOfDelete = (props) => {
     const changeIsRemind = props.changeIsRemindFunc;
+    const [delayStyle, setDelayStyle] = useState({});
     const makeDelayStyle = () => {
         setTimeout(() => setDelayStyle({ opacity: '1' }), 200);
-        return {};
+        return delayStyle;
     };
-    const [delayStyle, setDelayStyle] = useState(makeDelayStyle());
     return (
-        <Drawer style={delayStyle}>
+        <Drawer style={makeDelayStyle()}>
             <FirstLayer onClick={() => changeIsRemind(1)} />
             <SecondLayer>
                 <ButtonClose>
