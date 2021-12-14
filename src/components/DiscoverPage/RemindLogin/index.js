@@ -6,8 +6,8 @@ import { FirstLayer, SecondLayer, Drawer, ButtonClose, YesNoButton } from './sty
 
 import 'antd/dist/antd.css';
 
-export const RemindOfAdd = (props) => {
-    const changeDataCart = props.changeDataCartFunc;
+export const RemindLogin = (props) => {
+    const doLogin = props.doLoginFunc;
     const [delayStyle, setDelayStyle] = useState({});
     const makeDelayStyle = () => {
         setTimeout(() => setDelayStyle({ opacity: '1' }), 200);
@@ -15,18 +15,15 @@ export const RemindOfAdd = (props) => {
     };
     return (
         <Drawer style={makeDelayStyle()}>
-            <FirstLayer onClick={() => changeDataCart(0)} />
+            <FirstLayer onClick={() => doLogin(0)} />
             <SecondLayer>
                 <ButtonClose>
-                    <span onClick={() => changeDataCart(0)}>×</span>
+                    <span onClick={() => doLogin(0)}>×</span>
                 </ButtonClose>
-                <p>Are you sure you want to add the game to the cart?</p>
+                <p>You need to log in before buying the game to receive more incentives.</p>
                 <Row justify="center" style={{ margin: '1rem 0' }}>
                     <Col>
-                        <YesNoButton onClick={() => changeDataCart(1)}>Yes</YesNoButton>
-                    </Col>
-                    <Col>
-                        <YesNoButton onClick={() => changeDataCart(0)}>No</YesNoButton>
+                        <YesNoButton onClick={() => doLogin(1)}>Login</YesNoButton>
                     </Col>
                 </Row>
             </SecondLayer>

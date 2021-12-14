@@ -5,6 +5,7 @@ import { getDatabase, ref, child, get, set } from 'firebase/database';
 
 import { RemindOfAdd } from '../RemindAddCart/index';
 import { RemindNotExist } from '../RemindGameNotExist/index';
+import { RemindLogin } from '../RemindLogin/index';
 
 import { ImageStyle, ComponentPage, ProductStyle, Title, ComponentProduct } from "./styles";
 
@@ -28,6 +29,7 @@ export const FreeGame = () => {
 
     const [data, setData] = useState([]); 
     const [isExist, setIsExist] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
     const [isRemind, setIsRemind] = useState({
         status: false,
         product: {},
@@ -37,7 +39,6 @@ export const FreeGame = () => {
         const dbRef = ref(getDatabase());
         get(child(dbRef, `discover/freeGame`)).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(snapshot.val());
                 setData(snapshot.val());
             } else {
                 setData([]);
@@ -61,6 +62,36 @@ export const FreeGame = () => {
     const changeExistStatus = () => {
         setIsExist(false);
     }
+    const checkLogin = async (todo) => {
+        const dbRef = ref(getDatabase());
+        let status = await get(child(dbRef, `authentication/status`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                return snapshot.val();
+            } else {
+                return false;
+            }
+            }).catch((error) => {
+                console.error(error);
+            })
+        setIsLogin(status);
+        if(status)
+        {
+            !todo.status 
+                ? setIsExist(true) 
+                : setIsRemind({
+                    status: true,
+                    product: todo,
+                })
+        }
+    }  
+    const doLogin = (kind) => {
+        if(kind === 1)
+        {
+            ///do something to switch status isLogin
+            console.log('do something to switch status isLogin');
+        }
+        setIsLogin(true);
+    }
 
     return(
         <ComponentPage>
@@ -71,10 +102,7 @@ export const FreeGame = () => {
             <ComponentProduct>
                 {
                     data.map(todo => 
-                        <ProductStyle onClick={() => !todo.status ? setIsExist(true) : setIsRemind({
-                            status: true,
-                            product: todo,
-                        })}>
+                        <ProductStyle onClick={() => checkLogin(todo)}>
                             <div>
                                 <ImageStyle src={todo.linkImage} />
                                 {
@@ -91,6 +119,7 @@ export const FreeGame = () => {
             </ComponentProduct>
             {isRemind.status && <RemindOfAdd changeDataCartFunc={changeDataCart} />}
             {isExist && <RemindNotExist changeExistStatusFunc={changeExistStatus} />}
+            {!isLogin && <RemindLogin doLoginFunc={doLogin} />}
         </ComponentPage>
     );
 }

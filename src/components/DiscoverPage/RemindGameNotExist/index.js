@@ -6,13 +6,13 @@ import 'antd/dist/antd.css';
 
 export const RemindNotExist = (props) => {
     const changeExistStatus = props.changeExistStatusFunc;
+    const [delayStyle, setDelayStyle] = useState({});
     const makeDelayStyle = () => {
         setTimeout(() => setDelayStyle({ opacity: '1' }), 200);
-        return {};
+        return delayStyle;
     };
-    const [delayStyle, setDelayStyle] = useState(makeDelayStyle());
     return (
-        <Drawer style={delayStyle}>
+        <Drawer style={makeDelayStyle()}>
             <FirstLayer onClick={() => changeExistStatus()} />
             <SecondLayer>
                 <ButtonClose>

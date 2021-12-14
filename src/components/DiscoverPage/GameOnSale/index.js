@@ -5,6 +5,7 @@ import { getAnalytics } from 'firebase/analytics';
 import { getDatabase, ref, child, get, set } from 'firebase/database';
 
 import { RemindOfAdd } from '../RemindAddCart/index';
+import { RemindLogin } from '../RemindLogin/index';
 
 import { ComponentPage, ImageStyle, ButtonStyle, ContentProduct, Title, ComponentProduct } from './styles';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
@@ -27,6 +28,7 @@ export const GameOnSale = () => {
     const analytics = getAnalytics(app);
 
     const [data, setData] = useState([]);
+    const [isLogin, setIsLogin] = useState(true);
     const [isRemind, setIsRemind] = useState({
         status: false,
         product: {},
@@ -54,7 +56,6 @@ export const GameOnSale = () => {
         const dbRef = ref(getDatabase());
         get(child(dbRef, `discover/gamesOnSale`)).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(snapshot.val());
                 setData(snapshot.val());
             } else {
                 setData([]);
@@ -75,6 +76,34 @@ export const GameOnSale = () => {
             product: {},
         });
     }
+    const checkLogin = async (todo) => {
+        const dbRef = ref(getDatabase());
+        let status = await get(child(dbRef, `authentication/status`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                return snapshot.val();
+            } else {
+                return false;
+            }
+            }).catch((error) => {
+                console.error(error);
+            })
+        setIsLogin(status);
+        if(status)
+        {
+            setIsRemind({
+                status: true,
+                product: todo,
+            })
+        }
+    } 
+    const doLogin = (kind) => {
+        if(kind === 1)
+        {
+            ///do something to switch status isLogin
+            console.log('do something to switch status isLogin');
+        }
+        setIsLogin(true);
+    }
     
     return(
         <ComponentPage>
@@ -93,10 +122,7 @@ export const GameOnSale = () => {
             <Carousel ref={(node) => (carousel = node)} {...dataSlick}>
                 {
                     data.map(todo =>
-                        <ComponentProduct onClick={() => setIsRemind({
-                                status: true,
-                                product: todo,
-                            })}>
+                        <ComponentProduct onClick={() => checkLogin(todo)}>
                             <ImageStyle src={todo.linkImage} />
                             <ContentProduct>
                                 <p>{todo.name}</p>
@@ -113,6 +139,7 @@ export const GameOnSale = () => {
                 }
             </Carousel>
             {isRemind.status && <RemindOfAdd changeDataCartFunc={changeDataCart} />}
+            {!isLogin && <RemindLogin doLoginFunc={doLogin} />}
         </ComponentPage>
     );
 }

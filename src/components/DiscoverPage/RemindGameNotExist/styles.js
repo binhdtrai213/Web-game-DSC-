@@ -14,7 +14,7 @@ export const FirstLayer = styled.div`
     top: 0;
     left: 0;
     background-color: rgb(0 0 0 / 50%);
-    z-index: 9;
+    z-index: 16;
 `;
 export const SecondLayer = styled.div`
     width: 90%;
@@ -28,7 +28,7 @@ export const SecondLayer = styled.div`
     text-align: center;
     box-shadow: 0 0 9px 0 black;
     border-radius: 6px;
-    z-index: 10;
+    z-index: 17;
 `;
 export const ButtonClose = styled.div`
     display: flex;

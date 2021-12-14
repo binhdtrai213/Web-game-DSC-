@@ -6,6 +6,7 @@ import { getDatabase, ref, child, get, set } from 'firebase/database';
 
 import { RemindOfAdd } from '../RemindAddCart/index';
 import { RemindNotExist } from '../RemindGameNotExist/index';
+import { RemindLogin } from '../RemindLogin/index';
  
 import { ComponentBanner, ImageStyle, ButtonNext, ButtonPrev, ContentProduct } from './styles';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
@@ -29,6 +30,7 @@ export const Banner = () => {
 
     const [data, setData] = useState([]);
     const [isExist, setIsExist] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
     const [isRemind, setIsRemind] = useState({
         status: false,
         product: {},
@@ -47,7 +49,6 @@ export const Banner = () => {
         const dbRef = ref(getDatabase());
         get(child(dbRef, `discover/banner`)).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(snapshot.val());
                 setData(snapshot.val());
             } else {
                 setData([]);
@@ -70,6 +71,32 @@ export const Banner = () => {
     }
     const changeExistStatus = () => {
         setIsExist(false);
+    }
+    const checkLogin = async (todo) => {
+        const dbRef = ref(getDatabase());
+        let status = await get(child(dbRef, `authentication/status`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                return snapshot.val();
+            } else {
+                return false;
+            }
+            }).catch((error) => {
+                console.error(error);
+            })
+        setIsLogin(status);
+        if(status)
+            setIsRemind({
+                status: true,
+                product: todo,
+            })
+    } 
+    const doLogin = (kind) => {
+        if(kind === 1)
+        {
+            ///do something to switch status isLogin
+            console.log('do something to switch status isLogin');
+        }
+        setIsLogin(true);
     }
 
     return(
@@ -96,10 +123,7 @@ export const Banner = () => {
                                         : "Free"
                                     }
                                 </span>
-                                <button onClick={() => setIsRemind({
-                                    status: true,
-                                    product: todo,
-                                })}>BUY NOW</button>
+                                <button onClick={() => checkLogin(todo)}>BUY NOW</button>
                             </ContentProduct>
                         </div>
                     )
@@ -108,6 +132,7 @@ export const Banner = () => {
             </Carousel>
             {isRemind.status && <RemindOfAdd changeDataCartFunc={changeDataCart} />}
             {isExist && <RemindNotExist changeExistStatusFunc={changeExistStatus} />}
+            {!isLogin && <RemindLogin doLoginFunc={doLogin} />}
         </ComponentBanner>
     );
 }
