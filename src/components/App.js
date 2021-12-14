@@ -1,10 +1,14 @@
 import '../App.css';
 import { DiscoverPage } from './DiscoverPage/index';
+import { Footer } from './Footer/index';
 
 function App() {
     return (
-        <div className="App">
-            <DiscoverPage />
+        <div>
+            <div className="App">
+                <DiscoverPage />
+            </div>
+            <Footer />
         </div>
     );
 }
