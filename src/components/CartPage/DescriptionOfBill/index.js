@@ -43,7 +43,7 @@ export const DescriptionOfBill = (props) => {
         setIsLoading(true);
         const db = getDatabase();
         setTimeout(() =>{
-            data.map(todo => remove(ref(db, 'cart/' + todo[0])))
+            remove(ref(db, 'cart/'));
             updateData();
             setIsLoading(false);
         }, 3000);
