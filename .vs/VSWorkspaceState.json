@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\BrowsePage",
+    "\\src\\components\\DiscoverPage",
+    "\\src\\components\\LoginPage",
+    "\\src\\components\\Navbar",
+    "\\src\\service"
+  ],
+  "PreviewInSolutionExplorer": false
+}
