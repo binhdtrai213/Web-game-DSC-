@@ -3,9 +3,11 @@ import { CartPage } from './CartPage/index';
 
 function App() {
     return (
-      <div className="App">
-        <CartPage />
-      </div>
+        <div>
+            <div className="cart-page">
+                <CartPage />
+            </div>
+        </div>
     );
 }
 
