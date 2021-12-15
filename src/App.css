@@ -1,6 +1,10 @@
 .cart-page{
     padding: 1rem 10rem;
 }
+.discover-page{
+    padding: 1rem 10rem;
+    background: #121212;
+}
 @media only screen and (max-width: 1024px) {
     .App{
         padding: 1.5rem;
