@@ -5,6 +5,7 @@ import { getAnalytics } from 'firebase/analytics';
 import { getDatabase, ref, child, get, set } from 'firebase/database';
 
 import { RemindOfAdd } from '../RemindAddCart/index';
+import { RemindLogin } from '../RemindLogin/index';
 
 import { ComponentPage, ImageStyle, ContentProduct } from './styles';
 
@@ -25,6 +26,7 @@ export const MeaninglessPath2 = () => {
     const analytics = getAnalytics(app);
 
     const [data, setData] = useState([]);
+    const [isLogin, setIsLogin] = useState(true);
     const [isRemind, setIsRemind] = useState({
         status: false,
         product: {},
@@ -50,7 +52,6 @@ export const MeaninglessPath2 = () => {
         const dbRef = ref(getDatabase());
         get(child(dbRef, `discover/meaninglessPath2`)).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(snapshot.val());
                 setData(snapshot.val());
             } else {
                 setData([]);
@@ -71,16 +72,41 @@ export const MeaninglessPath2 = () => {
             product: {},
         });
     }
+    const checkLogin = async (todo) => {
+        const dbRef = ref(getDatabase());
+        let status = await get(child(dbRef, `authentication/status`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                return snapshot.val();
+            } else {
+                return false;
+            }
+            }).catch((error) => {
+                console.error(error);
+            })
+        setIsLogin(status);
+        if(status)
+        {
+            setIsRemind({
+                status: true,
+                product: todo,
+            })
+        }
+    } 
+    const doLogin = (kind) => {
+        if(kind === 1)
+        {
+            ///do something to switch status isLogin
+            console.log('do something to switch status isLogin');
+        }
+        setIsLogin(true);
+    }
 
     return(
         <ComponentPage>
             <Carousel {...dataSlick}>
             {
                 data.map(todo =>
-                    <ContentProduct onClick={() => setIsRemind({
-                        status: true,
-                        product: todo,
-                    })}>
+                    <ContentProduct onClick={() => checkLogin()}>
                         <ImageStyle src={todo.linkImage} />
                         <p>{todo.name}</p>
                         <p className="content-product">{todo.content}</p>
@@ -95,6 +121,7 @@ export const MeaninglessPath2 = () => {
             }
             </Carousel>
             {isRemind.status && <RemindOfAdd changeDataCartFunc={changeDataCart} />}
+            {!isLogin && <RemindLogin doLoginFunc={doLogin} />}
         </ComponentPage>
     );
 }

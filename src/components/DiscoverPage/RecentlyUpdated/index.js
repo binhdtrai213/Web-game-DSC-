@@ -4,6 +4,7 @@ import { getAnalytics } from 'firebase/analytics';
 import { getDatabase, ref, child, get, set } from 'firebase/database';
 
 import { RemindOfAdd } from '../RemindAddCart/index';
+import { RemindLogin } from '../RemindLogin/index';
 
 import { ImageStyle, ComponentPage, ContentProduct, ComponentProduct } from "./styles";
 
@@ -25,6 +26,7 @@ export const RecentlyUpdated = () => {
     const analytics = getAnalytics(app);
 
     const [data, setData] = useState([]);
+    const [isLogin, setIsLogin] = useState(true);
     const [isRemind, setIsRemind] = useState({
         status: false,
         product: {},
@@ -34,7 +36,6 @@ export const RecentlyUpdated = () => {
         const dbRef = ref(getDatabase());
         get(child(dbRef, `discover/recentlyUpdated`)).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(snapshot.val());
                 setData(snapshot.val());
             } else {
                 setData([]);
@@ -55,14 +56,39 @@ export const RecentlyUpdated = () => {
             product: {},
         });
     }
+    const checkLogin = async (todo) => {
+        const dbRef = ref(getDatabase());
+        let status = await get(child(dbRef, `authentication/status`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                return snapshot.val();
+            } else {
+                return false;
+            }
+            }).catch((error) => {
+                console.error(error);
+            })
+        setIsLogin(status);
+        if(status)
+        {
+            setIsRemind({
+                status: true,
+                product: todo,
+            })
+        }
+    } 
+    const doLogin = (kind) => {
+        if(kind === 1)
+        {
+            ///do something to switch status isLogin
+            console.log('do something to switch status isLogin');
+        }
+        setIsLogin(true);
+    }
     const ContentComponent = () => {
         const count = window.matchMedia("(max-width: 768px)").matches ? 4 : 5;
         return(
             data.map((todo, id) => id < count &&
-                <div onClick={() => setIsRemind({
-                    status: true,
-                    product: todo,
-                })}>
+                <div onClick={() => checkLogin(todo)}>
                     <ImageStyle src={todo.linkImage} />
                     <ContentProduct>
                         <p className="name-product">{todo.name}</p>
@@ -85,6 +111,7 @@ export const RecentlyUpdated = () => {
                 {ContentComponent()}
             </ComponentProduct>
             {isRemind.status && <RemindOfAdd changeDataCartFunc={changeDataCart} />}
+            {!isLogin && <RemindLogin doLoginFunc={doLogin} />}
         </ComponentPage>
     );
 }

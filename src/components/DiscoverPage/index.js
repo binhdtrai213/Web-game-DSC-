@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { Banner } from './Banner/index';
 import { GameOnSale } from './GameOnSale/index';
 import { MeaninglessPath1 } from './MeaninglessPart1/index';
@@ -8,6 +9,7 @@ import { SyntheticPart } from './SyntheticPart/index';
 import { RecentlyUpdated } from './RecentlyUpdated/index';
 import { MostPopular } from './MostPopular/index';
 import { BrowsePart } from './BrowsePart/index';
+
 
 export const DiscoverPage = () => {
     
