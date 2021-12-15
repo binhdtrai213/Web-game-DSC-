@@ -52,8 +52,8 @@ export const Bars = styled(FaBars)`
 
 export const NavMenu = styled.div`
   display: grid;
-    grid-template-columns:25% 9% 52% 100%;
-    padding-left: 10px;
+    grid-template-columns: 20% 5% 4% 56% 46%;
+    padding-left: 32px;
   /* Second Nav */
   /* margin-right: 24px; */
   /* Third Nav */

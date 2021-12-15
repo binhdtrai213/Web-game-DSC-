@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import App from "../App";
-import { DiscoverPage } from '../DiscoverPage/index';
-import { Navbar } from "../Navbar/index";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { signInWithGoogle } from '../../service/firebase';
-
 
 
 export const Login = ({ user }) => {
@@ -21,11 +18,13 @@ export const Login = ({ user }) => {
         event.preventDefault();
     }
     return (
+        <div>
         <div style={{
             display: 'flex',
             justifyContent: 'space-evenly',
             color: 'white',
-            paddingTop: '10%'
+            paddingTop: '10%',
+
         }}
             className="Login">
             <Form style={{ width: '22%' }} onSubmit={handleSubmit}>
@@ -54,7 +53,8 @@ export const Login = ({ user }) => {
                     <br />Sign in with google
                 </Button>
             </Form>
-        </div>
+            </div>
+            </div>
     );
 
 }

@@ -6,6 +6,7 @@ import { BrowsePage } from './BrowsePage/index';
 import { Navbar } from './Navbar/index';
 import firebase from '../service/firebase';
 import { Login } from './LoginPage/index';
+import { Footer } from './Footer/index';
 
 import {
     BrowserRouter as Router,
@@ -23,12 +24,13 @@ function App() {
         })
     }, [])
     console.log(user);
-    return (
-        <div className="App">
-            {user ? <DiscoverPage user={user} /> && <Navbar user={user} />
-                : <Login /> && <Navbar />}
-        </div>
-    );
+        return (
+            <div className="App">
+                {user ? <DiscoverPage user={user} /> && <Navbar user={user}/>
+                    : <Login /> && <Navbar />}
+                <Footer/>
+            </div>
+        );
 }
 
 export default App;

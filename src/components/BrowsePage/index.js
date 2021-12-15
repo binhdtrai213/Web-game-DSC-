@@ -6,7 +6,6 @@ import { Result } from './SectionResult/index';
 import { Popular } from './SectionPopularGames/index';
 import { SideBar } from './SectionFilter/index';
 
-
 export const BrowsePage = ({ user }) => {
     
     return(

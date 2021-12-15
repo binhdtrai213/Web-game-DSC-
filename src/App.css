@@ -6,7 +6,9 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+.makeStyles-root-1{
+    min-height: inherit;
+}
 .active {
     color: white !important;
 }
@@ -119,4 +121,11 @@
 
 .searchBar:valid a {
     display: block;
+}
+/*Login form*/
+.Login input {
+    width: 100%;
+    height: 30px;
+    border-radius: 6px;
+    color: black;
 }

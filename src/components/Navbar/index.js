@@ -6,7 +6,7 @@ import { BrowsePage } from '../BrowsePage/index';
 import Search from './searchComponent';
 import { Login } from '../LoginPage/index';
 import { auth } from '../../service/firebase'
-
+import { CartPage } from '../CartPage/index';
 import {
     BrowserRouter as Router,
     Switch,
@@ -92,7 +92,12 @@ export const Navbar = ({ user }) => {
                                 <NavLink to='/Browse' activeStyle>
                                 Browse
                                 </NavLink>
-                         </NavMenu>
+                        </NavMenu>
+
+                        <NavMenu>
+                            {user ? <NavLink to='/Cart' activeStyle> Your Cart</NavLink>
+                                  : <NavLink to=''> </NavLink>}
+                        </NavMenu>
                         {/* Second Nav */}
                         {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
                     <NavMenu>
@@ -115,6 +120,9 @@ export const Navbar = ({ user }) => {
                     </Route>
                     <Route path="/sign-out">
                         <Login />
+                    </Route>
+                    <Route path="/Cart">
+                        <CartPage />
                     </Route>
                 </Switch>
             </div>
