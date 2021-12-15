@@ -5,11 +5,11 @@ import { Footer } from './Footer/index';
 function App() {
     return (
         <div>
-            <div className="App">
+            <div className="discover-page">
                 <DiscoverPage />
             </div>
-            <Footer />
         </div>
+        
     );
 }
 export default App;
