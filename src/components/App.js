@@ -1,19 +1,34 @@
 import '../App.css';
-import { CartPage } from './CartPage/index';
+
+import { useState, useEffect } from 'react';
 import { DiscoverPage } from './DiscoverPage/index';
-import { Footer } from './Footer/index';
+import { BrowsePage } from './BrowsePage/index';
+import { Navbar } from './Navbar/index';
+import firebase from '../service/firebase';
+import { Login } from './LoginPage/index';
+
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
 function App() {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(user => {
+            setUser(user);
+        })
+    }, [])
+    console.log(user);
     return (
-        <div>
-            <div className="discover-page">
-                <DiscoverPage />
-            </div>
-            <div className="cart-page">
-                <CartPage />
-            </div>
-            <Footer />
-        </div>        
+        <div className="App">
+            {user ? <DiscoverPage user={user} /> && <Navbar user={user} />
+                : <Login /> && <Navbar />}
+        </div>
     );
 }
+
 export default App;

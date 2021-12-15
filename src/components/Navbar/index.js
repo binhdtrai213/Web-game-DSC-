@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DiscoverPage } from '../DiscoverPage/index';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
+import { AppBar } from '@material-ui/core';
 import { BrowsePage } from '../BrowsePage/index';
 import Search from './searchComponent';
 import { Login } from '../LoginPage/index';
