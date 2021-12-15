@@ -12,6 +12,7 @@ function App() {
             <div className="cart-page">
                 <CartPage />
             </div>
+            <Footer />
         </div>        
     );
 }
