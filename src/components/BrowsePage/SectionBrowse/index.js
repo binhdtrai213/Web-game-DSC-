@@ -19,7 +19,7 @@ export const GameOnSale = () => {
     return(
         <ComponentPage>
             <Title>
-                <p>Games On Sale</p>
+                <p>Game(s) you may like</p>
                 <div className="button-prev-next">
                     <ButtonStyle onClick={() => carousel.prev()}>
                         <LeftOutlined/>
