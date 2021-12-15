@@ -1,0 +1,118 @@
+.App {
+    padding: 1rem 10rem 10rem;
+    background: #121212;
+    min-height: 980px;
+    background: url(https://wallpaper.dog/large/5463473.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.active {
+    color: white!important;
+}
+@media only screen and (max-width: 1024px) {
+    .App{
+        padding: 1.5rem;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .App{
+        padding: 1rem;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .App{
+        padding: 0.5rem;
+    }
+}
+
+/*Login form*/
+@media all and(min-width: 480px) {
+    .Login {
+        padding: 60px 0;
+    }
+
+    .Login form {
+        margin: 0 auto;
+        max-width: 320px;
+    }
+}
+
+
+/* Search bar */
+.searchBar {
+    position: relative;
+    transform: translate(10px, 5px);
+    transition: all 0.5s;
+    width: 32px;
+    height: 34px;
+    background: #00000000;
+    box-sizing: border-box;
+    border-radius: 24px;
+    border: 2px solid #44424238;
+}
+
+    .searchBar input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: fit-content;
+        line-height: 30px;
+        outline: 0;
+        border: 0;
+        display: none;
+        font-size: 1em;
+        border-radius: 20px;
+        padding: 0 20px;
+        background: #444343e0;
+    }
+
+.fa {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 0.5s;
+}
+
+.searchBar:hover,
+.searchBar:valid {
+    width: 200px;
+    cursor: pointer;
+}
+
+    .searchBar:hover input,
+    .searchBar:valid input {
+        display: block;
+    }
+
+    .searchBar:hover .fa,
+    .searchBar:valid .fa {
+        background: #07051a;
+        color: white;
+    }
+
+
+.searchBar a {
+    display: none;
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+.searchBar:valid a {
+    display: block;
+}
