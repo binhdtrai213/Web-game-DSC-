@@ -3,9 +3,12 @@ import { DiscoverPage } from './DiscoverPage/index';
 
 function App() {
     return (
-        <div className="App">
-            <DiscoverPage />
+        <div>
+            <div className="discover-page">
+                <DiscoverPage />
+            </div>
         </div>
+        
     );
 }
 export default App;
