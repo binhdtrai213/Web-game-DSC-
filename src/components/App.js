@@ -1,5 +1,6 @@
 import '../App.css';
 import { DiscoverPage } from './DiscoverPage/index';
+import { Footer } from './Footer/index';
 
 function App() {
     return (
