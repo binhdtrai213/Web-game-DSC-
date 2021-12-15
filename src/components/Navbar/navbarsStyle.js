@@ -24,7 +24,7 @@ export const Nav = styled.nav`
 `;
 
 export const NavLink = styled(Link)`
-  color: #f9f9f9;
+  color: #999797;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -51,9 +51,9 @@ export const Bars = styled(FaBars)`
 `;
 
 export const NavMenu = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: -24px;
+  display: grid;
+    grid-template-columns:25% 9% 52% 100%;
+    padding-left: 10px;
   /* Second Nav */
   /* margin-right: 24px; */
   /* Third Nav */
