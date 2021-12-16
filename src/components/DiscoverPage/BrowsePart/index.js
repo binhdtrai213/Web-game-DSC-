@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 import { ComponentPage, ImageStyle, ContentStyle } from "./styles";
 
 import ImageBrowse from "../../../assets/BrowsePart/egs-browsebreaker-no-cn.png"

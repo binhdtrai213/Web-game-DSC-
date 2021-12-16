@@ -8,13 +8,16 @@ export const ImageStyle = styled.img`
 
 export const ComponentPage = styled.div`
     margin-top: 3rem;
-    .media-bigger-than-600px{
-        display: grid;
-        grid-template-columns: 48.5% 48.5%;
-        justify-content: space-between;
-    }
     .ant-carousel .slick-dots {
         bottom: -12px;
+    }
+    .ant-carousel .slick-list .slick-slide {
+        div{
+            div{
+                width: 95% !important;
+                margin: 0.5rem !important;
+            }
+        }
     }
     @media only screen and (max-width: 600px) {
         margin-top: 1rem;

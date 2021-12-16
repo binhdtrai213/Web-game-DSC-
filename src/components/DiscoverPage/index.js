@@ -1,5 +1,5 @@
-import React from 'react';
-import { Navbar } from '../Navbar/index';
+import React, { useState } from 'react';
+
 import { Banner } from './Banner/index';
 import { GameOnSale } from './GameOnSale/index';
 import { MeaninglessPath1 } from './MeaninglessPart1/index';
@@ -10,12 +10,10 @@ import { RecentlyUpdated } from './RecentlyUpdated/index';
 import { MostPopular } from './MostPopular/index';
 import { BrowsePart } from './BrowsePart/index';
 
-import { auth } from '../../service/firebase'
 
-
-export const DiscoverPage = ({ user }) => {
+export const DiscoverPage = () => {
     
-    return (
+    return(
         <div>
             <Banner />
             <GameOnSale />

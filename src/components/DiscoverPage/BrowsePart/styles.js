@@ -29,6 +29,7 @@ export const ContentStyle = styled.div`
     align-items: center;
     .title{
         font-size: 25px;
+        cursor: pointer;
     }
     .content{
         font-size: 19px;

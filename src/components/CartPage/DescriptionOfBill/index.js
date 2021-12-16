@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getDatabase, ref, child, get, remove } from 'firebase/database';
+import { Link } from "react-router-dom";
 
 import { Row, Col, Typography } from 'antd';
 
@@ -79,7 +80,9 @@ export const DescriptionOfBill = (props) => {
                 <ButtonOrder onClick={() => data.length && doLoading()}>BUY NOW</ButtonOrder>
             </Row>
             <Row>
-                <ButtonBuyMore>BUY MORE</ButtonBuyMore>
+                <ButtonBuyMore>
+                    <Link to="/Discover">BUY MORE</Link>
+                </ButtonBuyMore>
             </Row>
             <Row>
                 <i style={{ color: '#737575' }}>

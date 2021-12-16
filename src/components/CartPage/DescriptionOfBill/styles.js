@@ -40,18 +40,26 @@ export const ButtonOrder = styled.button`
 `;
 export const ButtonBuyMore = styled.button`
     width: 100%;
-    padding: 0.5rem;
     margin: 0.5rem 0;
-    background-color: white;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 2px;
-    border: 2px solid #2c272e;
-    cursor: pointer;
-    :hover {
-        background-color: #2c272e;
-        color: white;
+    padding: 0;
+    border: none;
+    a{
+        display: block;
+        width: 100%;
+        padding: 0.5rem;
+        transition: none;
+        background-color: white;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 2px;
+        border: 2px solid #2c272e;
+        cursor: pointer;
+        color: black;
+        :hover {
+            color: white !important;
+            background-color: #2c272e;
+        }
     }
     @media only screen and (max-width: 400px) {
         margin: 0.3rem 0;
