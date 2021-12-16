@@ -1,6 +1,19 @@
-.App {
+.DiscoveryPage, .BrowsePage {
     padding: 1rem 10rem 10rem;
     background: #121212;
+    min-height: 980px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.CartPage {
+    padding: 1rem 10rem 10rem;
+    background: white;
+    min-height: 980px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.LoginPage {
+    padding: 1rem 10rem 10rem;
     min-height: 980px;
     background: url(https://wallpaper.dog/large/5463473.jpg);
     background-repeat: no-repeat;
@@ -17,11 +30,15 @@
     .App {
         padding: 1.5rem;
     }
+  
 }
 
 @media only screen and (max-width: 600px) {
     .App {
         padding: 1rem;
+    }
+    .Login form button {
+        font-size: small;
     }
 }
 
@@ -29,10 +46,15 @@
     .App {
         padding: 0.5rem;
     }
+    .Login form button{
+       font-size: small!important;
+    }
 }
 
+
+
 /*Login form*/
-@media all and(min-width: 480px) {
+@media only screen and (min-width: 480px) {
     .Login {
         padding: 60px 0;
     }
@@ -41,13 +63,13 @@
             margin: 0 auto;
             max-width: 320px;
         }
+        
 }
 
 
 /* Search bar */
 .searchBar {
     position: relative;
-    transform: translate(10px, 5px);
     transition: all 0.5s;
     width: 32px;
     height: 34px;
@@ -86,6 +108,7 @@
     text-align: center;
     font-size: 1.2em;
     transition: all 0.5s;
+    padding: 8px;
 }
 
 .searchBar:hover,
@@ -123,9 +146,39 @@
     display: block;
 }
 /*Login form*/
+
 .Login input {
     width: 100%;
     height: 30px;
     border-radius: 6px;
     color: black;
+}
+.LoginBtn:hover {
+    background: #09873b !important;
+    color: black !important;
+}
+.LoginBtn {
+    background: #05d774 !important;
+    color: black !important;
+    margin: 1.5rem 0 0 !important;
+    font-size: 16px!important;
+}
+.GoogleBtn {
+    margin: 9% 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+    align-items: center;
+    background: #ffffff;
+    color: black;
+    font-size: large;
+    font-weight: 500;
+    width: 100%;
+    cursor: pointer;
+    border: 0;
+}
+
+.GoogleBtn:hover {
+    box-shadow: 0 0 2px 2px #a19696;
 }

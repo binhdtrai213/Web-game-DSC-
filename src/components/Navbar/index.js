@@ -7,6 +7,7 @@ import Search from './searchComponent';
 import { Login } from '../LoginPage/index';
 import { auth } from '../../service/firebase'
 import { CartPage } from '../CartPage/index';
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -20,6 +21,7 @@ import {
     NavMenu,
     NavBtn,
     NavBtnLink,
+    NavItem,
 } from './navbarsStyle';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,10 +48,10 @@ const useStyles = makeStyles((theme) => ({
 
 export const Navbar = ({ user }) => {
 
-
     const classes = useStyles();
     const [navBackground, setNavBackground] = useState('appBarTransparent')
     const navRef = React.useRef()
+
     navRef.current = navBackground
     useEffect(() => {
         const handleScroll = () => {
@@ -78,34 +80,34 @@ export const Navbar = ({ user }) => {
                     <Bars />
                  
                     <NavMenu>
-                        <NavMenu>
+                        <NavItem>
                             <Search />
-                        </NavMenu>
+                        </NavItem>
 
-                        <NavMenu>
+                        <NavItem>
                             <NavLink to='/Discover' activeStyle>
                                 Discover
                             </NavLink>
-                        </NavMenu>
+                        </NavItem>
 
-                        <NavMenu>
+                        <NavItem>
                                 <NavLink to='/Browse' activeStyle>
                                 Browse
                                 </NavLink>
-                        </NavMenu>
+                        </NavItem>
 
-                        <NavMenu>
+                        <NavItem>
                             {user ? <NavLink to='/Cart' activeStyle> Your Cart</NavLink>
                                   : <NavLink to=''> </NavLink>}
-                        </NavMenu>
+                        </NavItem>
                         {/* Second Nav */}
                         {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
-                    <NavMenu>
+                        <NavItem>
                            <NavBtn>
                                 {user ? <NavBtnLink onClick={() => auth.signOut()} to='/sign-out'>Sign Out</NavBtnLink>
                                       : <NavBtnLink onClick={() => auth.signOut()} to='/sign-out'>Sign In</NavBtnLink>}
                            </NavBtn>
-                     </NavMenu>
+                        </NavItem>
                     </NavMenu>
                 </AppBar>
                 <Switch>
@@ -119,7 +121,7 @@ export const Navbar = ({ user }) => {
                         <Login />
                     </Route>
                     <Route path="/sign-out">
-                        <Login />
+                        <Login user={false} />
                     </Route>
                     <Route path="/Cart">
                         <CartPage />

@@ -1,9 +1,11 @@
 
 
+import { SearchOutlined } from '@ant-design/icons';
+
 const SearchBar = () => (
 	<form class="searchBar" action="">
 		<input style={{ color: 'white' }} id="search-field" type="search" placeholder="search" required />
-			<i class="fa fa-search"></i>
+		<SearchOutlined className="fa" />
 	</form>
 );
 

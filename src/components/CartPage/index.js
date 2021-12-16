@@ -85,7 +85,7 @@ export const CartPage = () => {
     // print bill
     const classify = (todo) => {
         return (
-            <div height={'100%'} offset={100}>
+            <div  height={'100%'} offset={100}>
                 <Row style={contentBill} justify="space-between">
                     <Col lg={4} md={5} sm={6} xs={7} style={{ ...centerStyle, borderRadius: '10px' }}>
                         <Image src={todo.cartImage} style={imageStyle} />
@@ -118,7 +118,7 @@ export const CartPage = () => {
     };
 
     return (
-        <ComponentItems>
+        <ComponentItems className="CartPage">
             <Row>
                 <Title level={4} className="title">YOUR CART</Title>
             </Row>

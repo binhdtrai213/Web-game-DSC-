@@ -13,8 +13,8 @@ import { BrowsePart } from './BrowsePart/index';
 
 export const DiscoverPage = () => {
     
-    return(
-        <div>
+    return (
+        <div className="DiscoveryPage">
             <Banner />
             <GameOnSale />
             <MeaninglessPath1 />

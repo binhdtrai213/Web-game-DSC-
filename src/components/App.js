@@ -1,35 +1,44 @@
 import '../App.css';
 
 import { useState, useEffect } from 'react';
-import { DiscoverPage } from './DiscoverPage/index';
-import { BrowsePage } from './BrowsePage/index';
 import { Navbar } from './Navbar/index';
 import firebase from '../service/firebase';
-import { Login } from './LoginPage/index';
 import { Footer } from './Footer/index';
+import { Login } from './LoginPage/index';
+import WriteUser from './LoginPage/writeUser';
+import { getDatabase, ref, child, get, set } from 'firebase/database';
 
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
 
 function App() {
+    
     const [user, setUser] = useState(null);
 
+
     useEffect(() => {
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, `authentication/User1`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                setUser(snapshot);
+                return snapshot.val();
+            } else {
+                return false;
+            }
+        }).catch((error) => {
+            console.error(error);
+        })
+
         firebase.auth().onAuthStateChanged(user => {
             setUser(user);
         })
     }, [])
     console.log(user);
-        return (
-            <div className="App">
-                {user ? <DiscoverPage user={user} /> && <Navbar user={user}/>
-                    : <Login /> && <Navbar />}
-                <Footer/>
-            </div>
+    return (
+        <div>
+            <div >
+                {user ? <Navbar user={{ user }} /> : <Navbar />}
+                </div>
+            <Footer/>
+        </div>
         );
 }
 

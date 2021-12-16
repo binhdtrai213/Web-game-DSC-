@@ -8,8 +8,8 @@ import { SideBar } from './SectionFilter/index';
 
 export const BrowsePage = ({ user }) => {
     
-    return(
-        <div>
+    return (
+        <div className="BrowsePage">
             <Result />
             <GameOnSale />
             <SideBar />

@@ -1,24 +1,121 @@
-import React, { useState } from "react";
-import App from "../App";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { signInWithGoogle } from '../../service/firebase';
+import { FcGoogle } from "react-icons/fc";
+import { ButtonOrder } from '../CartPage/DescriptionOfBill/styles';
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+import { getDatabase, ref, child, get, set } from 'firebase/database';
+import firebase from '../../service/firebase';
 
 
-export const Login = ({ user }) => {
-    const [email, setEmail] = useState("");
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+    Link
+} from "react-router-dom";
+
+
+
+export const Login = ({ userCheck }) => {
+    const [user, setUser] = useState(null);
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCpMV7oa-Ub9JggYajdeCwP5iZ1WvkbWpc",
+        authDomain: "web-game-dsc.firebaseapp.com",
+        databaseURL: "https://web-game-dsc-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "web-game-dsc",
+        storageBucket: "web-game-dsc.appspot.com",
+        messagingSenderId: "346312806625",
+        appId: "1:346312806625:web:ce9990747594b69101e7a0",
+        measurementId: "G-MYD8JRXN9F"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    const [data, setData] = useState([]);
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [isLogin, setIsLogin] = useState(false);
 
-
+    
     function validateForm() {
-        return email.length > 0 && password.length > 0;
+        return username.length > 0 && password.length > 0;
     }
 
-    function handleSubmit(event) {
+   
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        const dbRef = ref(getDatabase());
+        let status = await get(child(dbRef, `authentication/User1`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot);
+                return snapshot.val();
+            } else {
+                return false;
+            }
+        }).catch((error) => {
+            console.error(error);
+        })
+
+        const db = getDatabase();
+
+        if (status.username == username && status.password == password) {
+            set(ref(db, 'authentication/User1/status'), true);
+            setIsLogin(true);
+            userCheck = true;
+        } else {
+            set(ref(db, 'authentication/User1/status'), false);
+            setIsLogin(false);
+            userCheck = false;
+        }
+    }
+    /*check user login*/
+    useEffect(() => {
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, `authentication/User1`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                setData(snapshot.val());
+                const db = getDatabase();
+                /*User data*/
+                if (userCheck == false) {
+                    set(ref(db, 'authentication/User1/status'), false);
+                    setIsLogin(false);
+                    userCheck = false;
+                }
+            } else {
+                setData([]);
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+    }, []);
+    /*check google login*/
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(user => {
+            setUser(user);
+            if (user)
+                setIsLogin(true);
+            else
+                setIsLogin(false);
+        })
+    }, [])
+    console.log(user);
+
+    function handleGoogleLogin(event) {
         event.preventDefault();
     }
+
+
     return (
-        <div>
+        <div className="LoginPage" style={{
+            background: 'url(https://wallpaper.dog/large/5463473.jpg)'}}>
         <div style={{
             display: 'flex',
             justifyContent: 'space-evenly',
@@ -27,14 +124,15 @@ export const Login = ({ user }) => {
 
         }}
             className="Login">
-            <Form style={{ width: '22%' }} onSubmit={handleSubmit}>
+                {isLogin && <Redirect to="/Discover" />}
+                <Form style={{ width: '22%' }} onSubmit={handleGoogleLogin}>
                 <Form.Group size="lg" controlId="email">
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label>Username</Form.Label>
                     <Form.Control
                         autoFocus
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                 </Form.Group>
                 <Form.Group size="lg" controlId="password">
@@ -44,20 +142,22 @@ export const Login = ({ user }) => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                </Form.Group>
-                <Button style={{
-                    width: '100%',
-                    margin: '9% 0'
-                }} size="lg" type="submit" onClick={signInWithGoogle}>
-                    <i className="fab fa-google"></i>
-                    <br />Sign in with google
-                </Button>
-            </Form>
-            </div>
+                    </Form.Group>
+                    <ButtonOrder type="submit" onClick={handleSubmit} className="LoginBtn"> Login </ButtonOrder>
+                    <Button className="GoogleBtn" size="lg" type="submit" onClick={signInWithGoogle}>
+                        <FcGoogle style={{
+                                fontSize: '30px',
+                                margin: '5px'}}/>
+                                Sign in with google
+                    </Button>
+                    </Form>
+                </div>
             </div>
     );
 
 }
-
+/*Login.propTypes = {
+    userCheck: PropTypes.func.isRequired
+};*/
 
 export default Login;

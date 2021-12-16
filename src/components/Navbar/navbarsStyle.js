@@ -49,11 +49,15 @@ export const Bars = styled(FaBars)`
     cursor: pointer;
   }
 `;
+export const NavItem = styled.div`
+    
+`
 
 export const NavMenu = styled.div`
-  display: grid;
-    grid-template-columns: 20% 5% 4% 56% 46%;
+    display: grid;
+    grid-template-columns: 20% 5% 5% 5% 115%;
     padding-left: 32px;
+    place-items: center;
   /* Second Nav */
   /* margin-right: 24px; */
   /* Third Nav */
