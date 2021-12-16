@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { Link } from "react-router-dom";
+
 import { Row, Col } from 'antd';
 
 import { FirstLayer, SecondLayer, Drawer, ButtonClose, YesNoButton } from './styles';
@@ -23,7 +25,9 @@ export const RemindLogin = (props) => {
                 <p>You need to log in before buying the game to receive more incentives.</p>
                 <Row justify="center" style={{ margin: '1rem 0' }}>
                     <Col>
-                        <YesNoButton onClick={() => doLogin(1)}>Login</YesNoButton>
+                        <Link to="/sign-out">
+                            <YesNoButton onClick={() => doLogin(1)}>Login</YesNoButton>
+                        </Link>
                     </Col>
                 </Row>
             </SecondLayer>
