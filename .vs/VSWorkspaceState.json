@@ -3,13 +3,15 @@
     "",
     "\\src",
     "\\src\\components",
+    "\\src\\components\\BrowsePage",
+    "\\src\\components\\BrowsePage\\SectionPopularGames",
     "\\src\\components\\CartPage",
-    "\\src\\components\\CartPage\\RemindOfDelete",
-    "\\src\\components\\DiscoverPage",
-    "\\src\\components\\DiscoverPage\\RemindGameNotExist",
-    "\\src\\components\\DiscoverPage\\SyntheticPart",
-    "\\src\\components\\Footer",
-    "\\src\\components\\LoginPage"
+    "\\src\\components\\CartPage\\DescriptionOfBill",
+    "\\src\\components\\DiscoverPage\\Banner",
+    "\\src\\components\\DiscoverPage\\FreeGame",
+    "\\src\\components\\LoginPage",
+    "\\src\\components\\Navbar"
   ],
+  "SelectedNode": "\\src\\components\\BrowsePage\\SectionPopularGames\\index.js",
   "PreviewInSolutionExplorer": false
 }
