@@ -51,7 +51,6 @@ export const Login = ({ userCheck }) => {
    
 
     async function handleSubmit(event) {
-        event.preventDefault();
         const dbRef = ref(getDatabase());
         let status = await get(child(dbRef, `authentication/User1`)).then((snapshot) => {
             if (snapshot.exists()) {
@@ -106,51 +105,37 @@ export const Login = ({ userCheck }) => {
                 setIsLogin(false);
         })
     }, [])
-    console.log(user);
-
-    function handleGoogleLogin(event) {
-        event.preventDefault();
-    }
-
 
     return (
-        <div className="LoginPage" style={{
-            background: 'url(https://wallpaper.dog/large/5463473.jpg)'}}>
-        <div style={{
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            color: 'white',
-            paddingTop: '10%',
-
-        }}
-            className="Login">
-                {isLogin && <Redirect to="/Discover" />}
-                <Form style={{ width: '22%' }} onSubmit={handleGoogleLogin}>
-                <Form.Group size="lg" controlId="email">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control
-                        autoFocus
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group size="lg" controlId="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    </Form.Group>
-                    <ButtonOrder type="submit" onClick={handleSubmit} className="LoginBtn"> Login </ButtonOrder>
-                    <Button className="GoogleBtn" size="lg" type="submit" onClick={signInWithGoogle}>
+        <div className="LoginPage" >
+            <div className="Login">
+                    {isLogin && <Redirect to="/Discover" />}
+                    <Form style={{ width: '100%' }} onSubmit={handleSubmit}>
+                        <Form.Group size="lg" controlId="email">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control
+                                autoFocus
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group size="lg" controlId="password">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </Form.Group>
+                        <ButtonOrder type="submit" className="LoginBtn"> Login </ButtonOrder>
+                    </Form>
+                    <Button className="GoogleBtn" size="lg" onClick={signInWithGoogle}>
                         <FcGoogle style={{
                                 fontSize: '30px',
                                 margin: '5px'}}/>
                                 Sign in with google
                     </Button>
-                    </Form>
                 </div>
             </div>
     );

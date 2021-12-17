@@ -7,7 +7,7 @@ import { FacebookOutlined, TwitterOutlined, YoutubeOutlined, UpSquareOutlined } 
 
 export const Footer = () => {
     return(
-        <ComponentPage>
+        <div className="footer">
             <Header>
                 <div>
                     <a href={'https://www.facebook.com/epicgames'}>
@@ -36,6 +36,6 @@ export const Footer = () => {
                   respective owners. Non-US transactions through Epic 
                   Games International, S.à r.l. </p>
             </Content>
-        </ComponentPage>
+        </div>
     );
 }

@@ -32,7 +32,7 @@ export const Title = styled.div`
     margin: 0 0.3rem 1rem 0.3rem;
     p{
         color: white;
-        font-size: 15px;
+        font-size: 25px;
         margin-bottom: 0;
     }
     .button-prev-next{

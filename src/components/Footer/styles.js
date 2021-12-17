@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 
-export const ComponentPage = styled.div`
-    background: #2a2a2a;
-    padding: 2em 4.5em;
-    width: 100%;
-    box-shadow: 1px -5px #201f1fa1;
-`
 export const Header = styled.div`
-    padding: 0 10%;
     display: grid;
     grid-template-columns: auto auto;
     justify-content: space-between;
@@ -29,7 +22,6 @@ export const Header = styled.div`
     }
 `
 export const Content = styled.div`
-    padding: 0 10%;
     margin-top: 2rem;
     color: #ccc;
     p{

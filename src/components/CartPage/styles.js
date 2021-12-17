@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const ComponentItems = styled.div`
     width: 100%;
-    margin: 2rem 0;
+    margin: 5rem 0;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     padding-bottom: 5rem;
 
     @media only screen and (max-width: 400px) {
-        margin: 1rem 0;
+        margin: 3rem 0;
         .title{
             font-size: 16px;
         }

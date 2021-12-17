@@ -5,6 +5,13 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+.footer{
+    background: #2a2a2a;
+    padding: 2em 10em;
+    width: 100%;
+    text-align: justify;
+    box-shadow: 1px -5px #201f1fa1;
+}
 .CartPage {
     padding: 1rem 10rem 10rem;
     background: white;
@@ -13,8 +20,8 @@
     background-size: cover;
 }
 .LoginPage {
-    padding: 1rem 10rem 10rem;
-    min-height: 980px;
+    padding: 3rem 10rem 10rem;
+    min-height: 850px;
     background: url(https://wallpaper.dog/large/5463473.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -25,12 +32,26 @@
 .active {
     color: white !important;
 }
+/* Filter section */
+.filterSection{
+    display: block; 
+    width: 20%;
+    padding: 60px 10px;
+    float: right;
+}
+
+
 
 @media only screen and (max-width: 1024px) {
     .App {
         padding: 1.5rem;
     }
   
+}
+@media only screen and (max-width: 740px) {
+    .filterSection{
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -56,12 +77,11 @@
 /*Login form*/
 @media only screen and (min-width: 480px) {
     .Login {
-        padding: 60px 0;
+        padding: 100px 0;
     }
 
         .Login form {
             margin: 0 auto;
-            max-width: 320px;
         }
         
 }
@@ -104,9 +124,9 @@
     top: 0;
     right: 0;
     border-radius: 50%;
-    color: #ffffff;
+    color: #05d774 !important;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.3em;
     transition: all 0.5s;
     padding: 8px;
 }
@@ -149,9 +169,13 @@
 
 .Login input {
     width: 100%;
+    padding: 1.1rem;
     height: 30px;
     border-radius: 6px;
     color: black;
+}
+.Login label{
+    font-size: 17px;
 }
 .LoginBtn:hover {
     background: #09873b !important;
@@ -162,9 +186,11 @@
     color: black !important;
     margin: 1.5rem 0 0 !important;
     font-size: 16px!important;
+    border-radius: 8px !important;
 }
 .GoogleBtn {
-    margin: 9% 0px;
+    width: 100%;
+    margin: 7.5% 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -174,11 +200,59 @@
     color: black;
     font-size: large;
     font-weight: 500;
-    width: 100%;
     cursor: pointer;
-    border: 0;
+    border-radius: 8px;
 }
 
 .GoogleBtn:hover {
     box-shadow: 0 0 2px 2px #a19696;
+}
+.Login{
+    display: block;
+    width: 30%;
+    max-width: 320px;
+    margin: auto;
+    justify-content: space-evenly;
+    color: white;
+    padding-top: 10%;
+}
+@media only screen and (max-width: 1280px){
+    .Login{
+        width: 40%;
+    }
+}
+@media only screen and (max-width: 1024px) {
+    .DiscoveryPage, .BrowsePage, .CartPage, .LoginPage, .footer {
+        padding: 1.5rem;
+    }
+    .LoginPage{
+        padding-top: 3rem;
+    }
+}
+@media only screen and (max-width: 900px){
+    .Login{
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .DiscoveryPage, .BrowsePage, .CartPage, .LoginPage, .footer {
+        padding: 1rem;
+    }
+    .LoginPage{
+        padding-top: 3rem;
+    }
+    .Login{
+        width: 70%;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .DiscoveryPage, .BrowsePage, .CartPage, .LoginPage, .footer {
+        padding: 0.5rem;
+    }
+    .LoginPage{
+        padding-top: 3rem;
+    }
+    .Login{
+        width: 85%;
+    }
 }

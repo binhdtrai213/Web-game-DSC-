@@ -74,7 +74,7 @@ export const MeaninglessPath2 = () => {
     }
     const checkLogin = async (todo) => {
         const dbRef = ref(getDatabase());
-        let status = await get(child(dbRef, `authentication/status`)).then((snapshot) => {
+        let status = await get(child(dbRef, `authentication/User1/status`)).then((snapshot) => {
             if (snapshot.exists()) {
                 return snapshot.val();
             } else {

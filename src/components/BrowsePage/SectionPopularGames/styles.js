@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 
 export const ImageStyle = styled.img`
-    width: 90%;
+    width: 100%;
     border-radius: 5px;
-    cursor: pointer;
 `;
 export const ComponentPage = styled.div`
     margin-top: 3rem;
     font-weight: 500;
-    color: white;
     .title{
-        font-size: 15px;
+        font-size: 25px;
+        color: white;
     }
     @media only screen and (max-width: 600px) {
         .title{
@@ -20,24 +19,12 @@ export const ComponentPage = styled.div`
     }
 `;
 export const ComponentProduct = styled.div`
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    -webkit-box-pack: start;
-    -webkit-justify-content: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    justify-items: start;
-    -webkit-align-items: baseline;
-    -webkit-box-align: baseline;
-    -ms-flex-align: baseline;
-    align-items: flex-end;
-    width: 80%;
-    align-content: space-between;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 19% 19% 19% 19% 19%;
+    justify-content: space-between;
     div{
+        color: white;
+        cursor: pointer;
         transition: transform .2s;
         :hover{
             transform: scale(0.97);
@@ -47,13 +34,8 @@ export const ComponentProduct = styled.div`
         grid-template-columns: 48% 48%;
     }
 `;
-export const ImageProduct = styled.div`  width: 20%`;
-  
-
-
 export const ContentProduct = styled.div`
     margin-top: 1rem;
-    cursor: pointer;
     p{
         white-space: nowrap;
         overflow: hidden;

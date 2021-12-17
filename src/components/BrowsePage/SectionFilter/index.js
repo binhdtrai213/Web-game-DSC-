@@ -6,10 +6,8 @@ const { SubMenu } = Menu;
 export const SideBar= () => {
 
     return (
-        <div style={{
-            display: 'block', width: '20%', padding: '60px 10px', float: 'right'
-        }}>
-            <h3 style={{ color:"white", fontSize: '15px'}}>Filter</h3>
+        <div className="filterSection">
+            <h3 style={{ color:"white", fontSize: '21px'}}>Filter</h3>
             <Menu
                 defaultOpenKeys={['1']}
                 defaultSelectedKeys={['1']}
