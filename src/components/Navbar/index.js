@@ -11,6 +11,7 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getDatabase, ref, child, set, get } from 'firebase/database';
 import firebase from '../../service/firebase';
+import logo from '../../assets/DSCWolf.png';
 
 import {
     BrowserRouter as Router,
@@ -126,6 +127,7 @@ export const Navbar = () => {
                  
                     <NavMenu>
                         <div className="content-left">
+                            <img src={logo} alt="logo" className="logo"/>
                             <NavItem>
                                 <Search />
                             </NavItem>

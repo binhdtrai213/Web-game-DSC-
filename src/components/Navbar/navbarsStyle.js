@@ -61,15 +61,20 @@ export const NavItem = styled.div`
 export const NavMenu = styled.div`
     display: grid;
     grid-template-columns: 55% 45%;
-    margin: 0 7rem;
+    margin: 0 7rem 0 3rem;
     padding: 0.5rem 0;
     justify-content: space-between;
     .content-left{
       display: grid;
-      grid-template-columns: 30% 20% 20% 30%;
+      grid-template-columns: 15% 25% 20% 15% 25%;
+      .logo{
+        width: 50px;
+        cursor: pointer;
+      }
     }
     @media only screen and (max-width: 900px){
-      margin: 0 3rem;
+      grid-template-columns: 65% 35%;
+      margin: 0 2rem;
     }
 
     /* padding-left: 32px; */
