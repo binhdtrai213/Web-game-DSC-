@@ -76,6 +76,7 @@ export const MeaninglessPath1 = () => {
         const dbRef = ref(getDatabase());
         let status = await get(child(dbRef, `authentication/User1/status`)).then((snapshot) => {
             if (snapshot.exists()) {
+                setIsLogin(snapshot.val());
                 return snapshot.val();
             } else {
                 return false;
@@ -83,7 +84,6 @@ export const MeaninglessPath1 = () => {
             }).catch((error) => {
                 console.error(error);
             })
-        setIsLogin(status);
         if(status)
         {
             setIsRemind({

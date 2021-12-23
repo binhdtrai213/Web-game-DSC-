@@ -8,6 +8,7 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getDatabase, ref, child, get, set } from 'firebase/database';
 import firebase from '../../service/firebase';
+import { notification } from 'antd';
 
 
 import {
@@ -51,10 +52,10 @@ export const Login = ({ userCheck }) => {
    
 
     async function handleSubmit(event) {
+        event.preventDefault();
         const dbRef = ref(getDatabase());
         let status = await get(child(dbRef, `authentication/User1`)).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(snapshot);
                 return snapshot.val();
             } else {
                 return false;
@@ -64,12 +65,20 @@ export const Login = ({ userCheck }) => {
         })
 
         const db = getDatabase();
-
         if (status.username == username && status.password == password) {
+            notification.success({
+                message: 'Login successfully.', 
+                placement: "bottomRight",
+            });
             set(ref(db, 'authentication/User1/status'), true);
             setIsLogin(true);
             userCheck = true;
+            window.location.reload(true);
         } else {
+            notification.error({
+                message: 'Incorrect account or password.',
+                placement: "bottomRight",
+            });
             set(ref(db, 'authentication/User1/status'), false);
             setIsLogin(false);
             userCheck = false;
@@ -128,7 +137,7 @@ export const Login = ({ userCheck }) => {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </Form.Group>
-                        <ButtonOrder type="submit" className="LoginBtn"> Login </ButtonOrder>
+                        <ButtonOrder type="submit" className="LoginBtn"> Login</ButtonOrder>
                     </Form>
                     <Button className="GoogleBtn" size="lg" onClick={signInWithGoogle}>
                         <FcGoogle style={{

@@ -76,6 +76,7 @@ export const MeaninglessPath2 = () => {
         const dbRef = ref(getDatabase());
         let status = await get(child(dbRef, `authentication/User1/status`)).then((snapshot) => {
             if (snapshot.exists()) {
+                setIsLogin(snapshot.val());
                 return snapshot.val();
             } else {
                 return false;
@@ -83,7 +84,7 @@ export const MeaninglessPath2 = () => {
             }).catch((error) => {
                 console.error(error);
             })
-        setIsLogin(status);
+        
         if(status)
         {
             setIsRemind({
@@ -91,7 +92,7 @@ export const MeaninglessPath2 = () => {
                 product: todo,
             })
         }
-    } 
+    }  
     const doLogin = (kind) => {
         if(kind === 1)
         {
@@ -106,7 +107,7 @@ export const MeaninglessPath2 = () => {
             <Carousel {...dataSlick}>
             {
                 data.map(todo =>
-                    <ContentProduct onClick={() => checkLogin()}>
+                    <ContentProduct onClick={() => checkLogin(todo)}>
                         <ImageStyle src={todo.linkImage} />
                         <p>{todo.name}</p>
                         <p className="content-product">{todo.content}</p>
