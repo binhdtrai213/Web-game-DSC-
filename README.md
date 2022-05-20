@@ -1,6 +1,8 @@
 # Web-game-DSC
 
-Deployed: https://web-game-dsc.web.app/
+  Deployed: https://web-game-dsc.web.app/
+  - Username: 1@gmail.com.
+  - Password: 123456789.
 
 # Getting Started with Create React App
 
